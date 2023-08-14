@@ -1,78 +1,78 @@
-/BackEnd/HELP.md
-/BackEnd/target/
-/BackEnd/!.mvn/wrapper/maven-wrapper.jar
-/BackEnd/!**/src/main/**/target/
-/BackEnd/!**/src/test/**/target/
+/backend/HELP.md
+/backend/target/
+/backend/!.mvn/wrapper/maven-wrapper.jar
+/backend/!**/src/main/**/target/
+/backend/!**/src/test/**/target/
 
 ### STS ###
-/BackEnd/.apt_generated
-/BackEnd/.classpath
-/BackEnd/.factorypath
-/BackEnd/.project
-/BackEnd/.settings
-/BackEnd/.springBeans
-/BackEnd/.sts4-cache
+/backend/.apt_generated
+/backend/.classpath
+/backend/.factorypath
+/backend/.project
+/backend/.settings
+/backend/.springBeans
+/backend/.sts4-cache
 
 ### IntelliJ IDEA ###
-/BackEnd/.idea
-/BackEnd/*.iws
-/BackEnd/*.iml
-/BackEnd/*.ipr
+/backend/.idea
+/backend/*.iws
+/backend/*.iml
+/backend/*.ipr
 
 ### NetBeans ###
-/BackEnd//nbproject/private/
-/BackEnd//nbbuild/
-/BackEnd//dist/
-/BackEnd//nbdist/
-/BackEnd//.nb-gradle/
-/BackEnd/build/
-/BackEnd/!**/src/main/**/build/
-/BackEnd/!**/src/test/**/build/
+/backend//nbproject/private/
+/backend//nbbuild/
+/backend//dist/
+/backend//nbdist/
+/backend//.nb-gradle/
+/backend/build/
+/backend/!**/src/main/**/build/
+/backend/!**/src/test/**/build/
 
 ### VS Code ###
-/BackEnd/.vscode/
-/BackEnd/env.properties
+/backend/.vscode/
+/backend/env.properties
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/FrontEnd/dist
-/FrontEnd/tmp
-/FrontEnd/out-tsc
-/FrontEnd/bazel-out
+/frontend/dist
+/frontend/tmp
+/frontend/out-tsc
+/frontend/bazel-out
 
 # Node
 
-/FrontEnd/node_modules
-/FrontEnd/npm-debug.log
-/FrontEnd/yarn-error.log
+/frontend/node_modules
+/frontend/npm-debug.log
+/frontend/yarn-error.log
 
 # IDEs and editors
-/FrontEnd/.idea/
-/FrontEnd/.project
-/FrontEnd/.classpath
-/FrontEnd/.c9/
-/FrontEnd/*.launch
-/FrontEnd/.settings/
-/FrontEnd/*.sublime-workspace
+/frontend/.idea/
+/frontend/.project
+/frontend/.classpath
+/frontend/.c9/
+/frontend/*.launch
+/frontend/.settings/
+/frontend/*.sublime-workspace
 
 # Visual Studio Code
-/FrontEnd/.vscode/*
-/FrontEnd/!.vscode/settings.json
-/FrontEnd/!.vscode/tasks.json
-/FrontEnd/!.vscode/launch.json
-/FrontEnd/!.vscode/extensions.json
-/FrontEnd/.history/*
+/frontend/.vscode/*
+/frontend/!.vscode/settings.json
+/frontend/!.vscode/tasks.json
+/frontend/!.vscode/launch.json
+/frontend/!.vscode/extensions.json
+/frontend/.history/*
 
 # Miscellaneous
-/FrontEnd/.angular/cache
-/FrontEnd/.sass-cache/
-/FrontEnd/connect.lock
-/FrontEnd/coverage
-/FrontEnd/libpeerconnection.log
-/FrontEnd/testem.log
-/FrontEnd/typings
+/frontend/.angular/cache
+/frontend/.sass-cache/
+/frontend/connect.lock
+/frontend/coverage
+/frontend/libpeerconnection.log
+/frontend/testem.log
+/frontend/typings
 
 # System files
-/FrontEnd/.DS_Store
-/FrontEnd/Thumbs.db
+/frontend/.DS_Store
+/frontend/Thumbs.db
