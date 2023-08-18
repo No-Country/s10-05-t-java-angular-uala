@@ -27,7 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/v1/api/auth")
 public class AuthController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
