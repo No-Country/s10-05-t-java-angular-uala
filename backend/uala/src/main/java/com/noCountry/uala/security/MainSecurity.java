@@ -19,26 +19,23 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MainSecurity extends WebSecurityConfigurerAdapter {
-
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
-
-	//Devuelve el mensaje de no autorizado
 	@Autowired
 	JwtEntryPoint jwtEntryPoint;
+
+
+
+
 
 	@Bean
 	public JwtTokenFilter jwtTokenFilter(){
 		return new JwtTokenFilter();
 	}
 
-	/**
-	 * Encripta el pasword
-	 * @return pasword ecriptado
-	 */
+
 	@Bean
 	public PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
@@ -62,8 +59,6 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//Desactivamos cookies ya que enviamos un token
-		// cada vez que hacemos una petición
 		http.cors().and().csrf().disable()
 				.authorizeRequests()
 				.antMatchers("/auth/**").permitAll()

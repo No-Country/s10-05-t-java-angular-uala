@@ -35,13 +35,11 @@ public class AuthController {
 	@Autowired
 	private UsuarioService usuarioService;
 
-	//Espera un json y lo convierte a tipo clase NuevoUsuario
 	@PostMapping("/add")
 	public ResponseEntity<?> nuevoUsuario(@Valid @RequestBody NuevoUsuario nuevoUsuario) {
 		usuarioService.saveUser(nuevoUsuario);
-		return new ResponseEntity<>(new Mensaje("Usuario creado"), HttpStatus.CREATED);
+			return new ResponseEntity<>(new Mensaje("Created User"), HttpStatus.CREATED);
 	}
-
 
 	@PostMapping("/login")
 	public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario ){

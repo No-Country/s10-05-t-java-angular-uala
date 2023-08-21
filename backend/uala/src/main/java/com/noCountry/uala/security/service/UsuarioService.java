@@ -1,6 +1,8 @@
 package com.noCountry.uala.security.service;
 
 
+import com.noCountry.uala.models.entity.Wallet;
+import com.noCountry.uala.repository.WalletRepository;
 import com.noCountry.uala.security.dto.JwtDto;
 import com.noCountry.uala.security.dto.LoginUsuario;
 import com.noCountry.uala.security.dto.NuevoUsuario;
@@ -31,7 +33,6 @@ import java.util.Set;
 @Service
 @Transactional
 public class UsuarioService {
-
 	@Autowired
 	@Lazy
 	PasswordEncoder passwordEncoder;
@@ -44,6 +45,8 @@ public class UsuarioService {
 	JwtProvider jwtProvider;
 	@Autowired
 	UsuarioRepository usuarioRepository;
+	@Autowired
+	WalletRepository walletRepository;
 
 	public Optional<Usuario> getByUsuario(String nombreUsuario){
 		return usuarioRepository.findByNombreUsuario(nombreUsuario);
@@ -60,8 +63,6 @@ public class UsuarioService {
 		usuarioRepository.save(usuario);
 	}
 
-
-
 	public void saveUser(NuevoUsuario nuevoUsuario){
 
 		Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
@@ -71,8 +72,11 @@ public class UsuarioService {
 		if(nuevoUsuario.getRoles().contains("admin"))
 			roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
 		usuario.setRoles(roles);
+		Wallet wallet = new Wallet();
+		wallet.setBalance(00.00);
+		wallet.setCbu((long) wallet.generatedCbu());
+		usuario.setWallet(wallet);
         usuarioRepository.save(usuario);
-
 	}
 	public JwtDto login(LoginUsuario loginUsuario ){
 
@@ -85,6 +89,5 @@ public class UsuarioService {
 		JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
 		return jwtDto;
 	}
-
 
 }
