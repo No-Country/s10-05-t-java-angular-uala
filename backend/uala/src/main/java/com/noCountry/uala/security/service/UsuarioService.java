@@ -11,6 +11,7 @@ import com.noCountry.uala.security.entity.Usuario;
 import com.noCountry.uala.security.enums.RolNombre;
 import com.noCountry.uala.security.jwt.JwtProvider;
 import com.noCountry.uala.security.repository.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,7 @@ import java.util.Set;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UsuarioService {
 	@Autowired
 	@Lazy
@@ -39,14 +41,10 @@ public class UsuarioService {
 	@Autowired
 	@Lazy
 	AuthenticationManager authenticationManager;
-	@Autowired
-	RolService rolService;
-	@Autowired
-	JwtProvider jwtProvider;
-	@Autowired
-	UsuarioRepository usuarioRepository;
-	@Autowired
-	WalletRepository walletRepository;
+	private final RolService rolService;
+	private final JwtProvider jwtProvider;
+	private final UsuarioRepository usuarioRepository;
+	private final WalletRepository walletRepository;
 
 	public Optional<Usuario> getByUsuario(String nombreUsuario){
 		return usuarioRepository.findByNombreUsuario(nombreUsuario);
