@@ -1,5 +1,7 @@
 package com.noCountry.uala.security.entity;
 
+import com.noCountry.uala.models.entity.Wallet;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -25,14 +27,21 @@ public class Usuario {
 		@NotNull
 		private String password;
 
-		@NotNull
-		//Relación many to many
-		//Un usuario puede tener MUCHOS roles y un rol puede PERTENECER a varios usuarios
-		//Tabla intermedia que tiene dos campos que va a tener idUsuario y idRol
+		@OneToOne(cascade = CascadeType.ALL)
+		@JoinColumn(name = "id_wallet")
+		private Wallet wallet;
+
+	public Usuario( String nombre, String nombreUsuario, String email, String password, Wallet wallet) {
+		this.nombre = nombre;
+		this.nombreUsuario = nombreUsuario;
+		this.email = email;
+		this.password = password;
+		this.wallet = wallet;
+
+	}
+
+	@NotNull
 		@ManyToMany
-		// join columns hace referencia a la columna que hace referencia hacia esta
-		// Es decir la tabla usuario_rol va a tener un campo que se llama id_usuario
-		// inverseJoinColumns = el inverso, hace referencia a rol
 		@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario"),
 				inverseJoinColumns = @JoinColumn(name = "rol_id"))
 		private Set<Rol> roles = new HashSet<>();
@@ -49,6 +58,7 @@ public class Usuario {
 			this.nombreUsuario = nombreUsuario;
 			this.email = email;
 			this.password = password;
+			this.wallet = wallet;
 		}
 
 		public int getIdUsuario() {
@@ -98,5 +108,21 @@ public class Usuario {
 		public void setRoles(Set<Rol> roles) {
 			this.roles = roles;
 		}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
 	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public Wallet getWallet() {
+		return wallet;
+	}
+
+	public void setWallet(Wallet wallet) {
+		this.wallet = wallet;
+	}
+}
 
