@@ -1,0 +1,15 @@
+hr {
+    height: 42px;
+    width: 0px;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-image: initial;
+    border-right: 0.5px solid currentcolor;
+    margin: 0px 24px;
+}
+
+.hover-color-svg:hover {
+    color: #0535be;
+    cursor: not-allowed;
+}

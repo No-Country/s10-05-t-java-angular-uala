@@ -1,1 +1,59 @@
+<<<<<<< HEAD
 <router-outlet></router-outlet>
+=======
+<ng-container *ngIf="userLogged; else noUserLogged">
+  <div class="flex h-screen overflow-hidden">  
+    <div class="max-w-[16rem] w-full flex-grow flex flex-col border-r">
+      <div class="min-h-[4.5rem] flex items-center px-5">
+        <a routerLink="/home">
+          <span class="sr-only">Home</span>
+          <img class="max-w-[10rem]" src="../../../assets/svg/uala.svg" alt="brand logo">
+        </a>
+      </div>
+      <ul class="flex flex-col gap-1 px-3 text-sm text-[#3A3A3A] overflow-y-auto">
+        <li class="flex">
+          <a routerLink="/home" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]" class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faHouse"></fa-icon>
+            Inicio
+          </a>
+        </li>
+        <li class="flex">
+          <a routerLink="/transfers" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]" class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faDollarSign"></fa-icon>
+            Transferencias
+          </a>
+        </li>
+        <li class="flex">
+          <a routerLink="/help" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]" class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faGear"></fa-icon>
+            Ayuda
+          </a>
+        </li>
+        <li class="flex">
+          <button class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faArrowRightFromBracket"></fa-icon>
+            Cerrar sesión
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="flex flex-col w-full overflow-y-auto">
+      <div class="flex justify-between items-center sticky top-0 bg-white px-10 min-h-[4.5rem] border-b">
+        <div class="flex items-center gap-3">
+          <img src="https://www.logiconme.com/assets/img-temp/400x450/img5.jpg" alt="Profile user image" class="bg-gray-200 rounded-full cover w-11 aspect-square">
+          <h2 class="text-xl font-semibold text-[#3A3A3A]">Hola, {{user.name}}</h2>
+        </div>
+        <button class="text-2xl w-7 text-[#022A9B] hover:rotate-12 duration-200">
+          <span class="sr-only">Notifications</span>
+          <fa-icon [icon]="faBell"></fa-icon>
+        </button>
+      </div>      
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #noUserLogged>
+  <router-outlet></router-outlet>
+</ng-template>
+>>>>>>> 364f40287c06f9dc3e7c2db42f230a6c2d6c083d
