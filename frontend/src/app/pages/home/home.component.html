@@ -59,7 +59,35 @@
     <div>
       <div class="px-6 py-5 bg-white custom-blue-shadow rounded-2xl">
         <p class="text-[#3A3A3A] font-semibold">Análisis de gastos</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid labore corrupti ab! Molestias esse dolores reprehenderit libero exercitationem est laborum impedit quisquam perferendis, veritatis possimus at asperiores ullam voluptatum porro obcaecati voluptate doloremque ex eum sint in animi aperiam non. Qui dolorum commodi voluptatem quaerat fugiat totam quod illo hic eum esse earum ipsa, exercitationem rerum libero dolores enim recusandae aperiam cupiditate sunt itaque! Velit et architecto deserunt, voluptas amet nesciunt omnis sint, ex quo laboriosam tenetur. Sit, fugiat nisi recusandae laborum accusamus eveniet libero tempore? Mollitia quas doloribus expedita voluptatibus hic tempora quo id totam, dolorem, eveniet consequatur eius.</p>
+        <div class="max-w-[15rem] w-full relative aspect-square mx-auto">          
+          <div class="absolute top-0 flex flex-col items-center justify-center w-full h-full gap-1">
+            <p class="text-sm font-medium">Histórico</p>
+            <p class="text-sm font-bold">{{data | totalExpenses | currency}}</p>
+          </div>
+          <ngx-charts-pie-chart class="relative" [customColors]="customColors" [results]="data" [legend]="false" [labels]="false"
+            [doughnut]="true">
+          </ngx-charts-pie-chart>
+        </div>
+
+        <div class="flex flex-col gap-[1px] bg-[#E5E7EB]">
+          <div *ngFor="let item of data; let i = index" class="flex items-center justify-between py-3 bg-white">
+            <div class="flex items-center gap-3">
+              <div class="min-w-[2.5rem] aspect-square rounded-full flex items-center justify-center text-white {{gastos[i].bgColor}}">
+                <fa-icon [icon]="gastos[i].icon"></fa-icon>
+              </div>
+              <p class="font-medium">{{item.name}}</p>
+            </div>
+            <p class="font-semibold">{{item.value | currency}}</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center justify-between gap-5 mt-5">
+          <div class="flex flex-col">
+            <p class="font-semibold">¿Querés aprender a administrar tus finanzas?</p>
+            <p>Mirá las recomendaciones de nuestros expertos.</p>
+          </div>
+          <button class="text-[#3564FD] max-w-[3.875rem] w-full font-medium py-2 px-4 border border-[#3564FD] rounded-full hover:text-[#022A9B] hover:border-[#022A9B] duration-200">Ver</button>
+        </div>
       </div>
     </div>
 
