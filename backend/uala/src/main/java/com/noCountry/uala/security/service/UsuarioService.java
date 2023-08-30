@@ -6,12 +6,15 @@ import com.noCountry.uala.repository.WalletRepository;
 import com.noCountry.uala.security.dto.JwtDto;
 import com.noCountry.uala.security.dto.LoginUsuario;
 import com.noCountry.uala.security.dto.NuevoUsuario;
+import com.noCountry.uala.security.dto.UserResponseDto;
 import com.noCountry.uala.security.entity.Rol;
 import com.noCountry.uala.security.entity.Usuario;
+import com.noCountry.uala.security.entity.mapper.UserMapper;
 import com.noCountry.uala.security.enums.RolNombre;
 import com.noCountry.uala.security.jwt.JwtProvider;
 import com.noCountry.uala.security.repository.UsuarioRepository;
 import com.noCountry.uala.security.service.RolService;
+import com.noCountry.uala.security.util.GetUserLogged;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -19,6 +22,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -41,7 +45,8 @@ public class UsuarioService {
 	private final RolService rolService;
 	private final JwtProvider jwtProvider;
 	private final UsuarioRepository usuarioRepository;
-	private final WalletRepository walletRepository;
+	private final UserMapper userMapper;
+
 
 	public Optional<Usuario> getByUsuario(String nombreUsuario){
 		return usuarioRepository.findByNombreUsuario(nombreUsuario);
@@ -73,10 +78,10 @@ public class UsuarioService {
 		usuario.setWallet(wallet);
         usuarioRepository.save(usuario);
 	}
-	public JwtDto login(LoginUsuario loginUsuario ){
+	public JwtDto login(LoginUsuario loginUsuario ) {
 		Authentication authentication = authenticationManager.authenticate(
-						new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(),
-								loginUsuario.getPassword()));
+				new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(),
+						loginUsuario.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtProvider.generateToken(authentication);
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -92,8 +97,12 @@ public class UsuarioService {
 		}
 		return null;
 	}
-
-
+	public UserResponseDto userOfSession(){
+		Usuario usuario1= usuarioRepository.findByNombreUsuario(this.getUserLogged()).orElseThrow();
+		Usuario usuario = usuarioRepository.findByNombre(usuario1.getNombre());
+		UserResponseDto responseDto = userMapper.EntityToDto(usuario);
+		return responseDto;
+	}
 
 
 }
