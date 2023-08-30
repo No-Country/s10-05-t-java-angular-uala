@@ -15,11 +15,17 @@ const routes: Routes = [
     path: 'home',
     loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent),
     title: 'Ualá'
+  },
+  {
+    path: 'transfers',
+    loadChildren: () => import('./pages/transfers/transfers.module').then(m => m.TransfersModule),
+    title: 'Transferencias'
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+
 })
 export class AppRoutingModule { }

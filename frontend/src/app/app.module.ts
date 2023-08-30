@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StringInitialPipe } from './pipes/string-initial.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,
