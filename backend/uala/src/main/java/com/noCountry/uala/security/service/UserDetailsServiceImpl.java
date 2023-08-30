@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 /**
  * Clase que convierte la clase usuario en un UsuarioMain
@@ -27,4 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		Usuario usuario = usuarioService.getByUsuario(nombreUsuario).get();
 		return UsuarioMain.build(usuario);
 	}
+
+
+
 }
