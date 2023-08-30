@@ -37,7 +37,14 @@
     <div class="flex flex-col w-full overflow-y-auto">
       <div class="flex justify-between items-center sticky top-0 bg-white px-10 min-h-[4.5rem] border-b">
         <div class="flex items-center gap-3">
-          <img src="https://www.logiconme.com/assets/img-temp/400x450/img5.jpg" alt="Profile user image" class="bg-gray-200 rounded-full cover w-11 aspect-square">
+          <div class="flex items-center justify-center overflow-hidden bg-[#3564FD]/[15%] rounded-full w-11 aspect-square">
+            <ng-container *ngIf="user.img; else noUserImg">
+              <img src="{{user.img}}" alt="Profile user image" class="cover">
+            </ng-container>
+            <ng-template #noUserImg>
+              <p class="text-[#3564FD] font-semibold">{{user.name | stringInitial}}{{user.lastname | stringInitial}}</p>
+            </ng-template>
+          </div>          
           <h2 class="text-xl font-semibold text-[#3A3A3A]">Hola, {{user.name}}</h2>
         </div>
         <button class="text-2xl w-7 text-[#022A9B] hover:rotate-12 duration-200">

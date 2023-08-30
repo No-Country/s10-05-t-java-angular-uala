@@ -22,7 +22,9 @@ export class AppComponent {
   user = {
     name: 'Federico',
     lastname: 'Burgos',
-    balance: 365400
+    balance: 365400,
+    img: ''
+    // img: 'https://www.logiconme.com/assets/img-temp/400x450/img5.jpg'
   }
 
 }

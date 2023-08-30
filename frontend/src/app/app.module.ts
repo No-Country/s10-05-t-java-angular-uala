@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { StringInitialPipe } from './pipes/string-initial.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    StringInitialPipe,
   ],
   imports: [
     BrowserModule,
