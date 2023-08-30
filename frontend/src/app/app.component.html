@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-<router-outlet></router-outlet>
-=======
 <ng-container *ngIf="userLogged; else noUserLogged">
-  <div class="flex h-screen overflow-hidden">  
+  <div class="flex h-screen overflow-hidden">
     <div class="max-w-[16rem] w-full flex-grow flex flex-col border-r">
       <div class="min-h-[4.5rem] flex items-center px-5">
         <a routerLink="/home">
@@ -47,7 +44,7 @@
           <span class="sr-only">Notifications</span>
           <fa-icon [icon]="faBell"></fa-icon>
         </button>
-      </div>      
+      </div>
       <router-outlet></router-outlet>
     </div>
   </div>
@@ -56,4 +53,3 @@
 <ng-template #noUserLogged>
   <router-outlet></router-outlet>
 </ng-template>
->>>>>>> 364f40287c06f9dc3e7c2db42f230a6c2d6c083d
