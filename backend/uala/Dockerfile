@@ -15,6 +15,7 @@ RUN ./mvnw dependency:resolve
 COPY src src 
 RUN ./mvnw package
 
-FROM openjdk:17-jdk-slim WORKDIR demo 
+FROM openjdk:17-jdk-slim 
+WORKDIR demo 
 COPY --from=build target/uala-0.0.1-SNAPSHOT.jar demo.jar 
 ENTRYPOINT ["java", "-jar", "demo.jar"]
