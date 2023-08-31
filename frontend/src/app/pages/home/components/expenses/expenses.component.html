@@ -1,0 +1,92 @@
+<div class="px-6 py-5 bg-white custom-blue-shadow rounded-2xl">
+
+  <ng-container *ngIf="financeRecommendations; else expensesChart">
+
+    <div class="text-[#3A3A3A]">
+      <div class="flex items-center">
+        <button (click)="toggleFinanceRecommendations()" class="pe-3">
+          <fa-icon class="text-[#3564FD]" [icon]="faChevronLeft"></fa-icon>
+          <p class="sr-only">Back to expenses chart</p>
+        </button>
+        <p class="font-semibold">Recomendaciones financieras</p>
+      </div>
+      <p class="pt-3 text-sm">Te compartimos algunos datos que pueden ayudarte a controlar tus gastos y mejorar la forma de administrar tus ingresos.</p>
+      <div class="flex flex-col gap-10 pt-10">
+        <!-- distrib -->
+        <div class="flex flex-col gap-5">
+          <div class="flex items-center gap-3">
+            <div class="bg-[#3564FD] w-10 h-10 text-white flex items-center justify-center rounded-full text-xl">
+              <fa-icon [icon]="faPen"></fa-icon>
+            </div>
+            <div>
+              <p class="font-semibold">Cómo distribuir tus ingresos</p>
+              <p class="text-sm">Nuestros expertos recomiendan lo siguiente:</p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <div class="flex w-full overflow-hidden text-white rounded-md h-14">
+              <div class="w-[50%] bg-[#022A9B] h-full p-2 flex items-end">
+                50%
+              </div>
+              <div class="w-[30%] bg-[#022A9B]/[50%] h-full p-2 flex items-end">
+                30%
+              </div>
+              <div class="w-[20%] bg-[#022A9B]/[25%] h-full p-2 flex items-end">
+                20%
+              </div>
+            </div>
+            <div class="flex w-full overflow-hidden font-medium">
+              <div class="w-[50%]">
+                Básicos
+              </div>
+              <div class="w-[30%]">
+                Diversión
+              </div>
+              <div class="w-[20%]">
+                Ahorros
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- gastos de personas -->
+        <div></div>
+      </div>
+    </div>
+
+
+  </ng-container>
+
+  <ng-template #expensesChart>
+    <p class="text-[#3A3A3A] font-semibold">Análisis de gastos</p>
+    <div class="max-w-[15rem] w-full relative aspect-square mx-auto">
+      <div class="absolute top-0 flex flex-col items-center justify-center w-full h-full gap-1">
+        <p class="text-sm font-medium">Histórico</p>
+        <p class="text-sm font-bold">{{data | totalExpenses | currency}}</p>
+      </div>
+      <ngx-charts-pie-chart class="relative" [customColors]="customColors" [results]="data" [legend]="false"
+        [labels]="false" [doughnut]="true">
+      </ngx-charts-pie-chart>
+    </div>
+    <div class="flex flex-col gap-[1px] bg-[#E5E7EB]">
+      <div *ngFor="let item of data; let i = index" class="flex items-center justify-between py-3 bg-white">
+        <div class="flex items-center gap-3">
+          <div
+            class="min-w-[2.5rem] aspect-square rounded-full flex items-center justify-center text-white {{gastos[i].bgColor}}">
+            <fa-icon class="text-xl" [icon]="gastos[i].icon"></fa-icon>
+          </div>
+          <p class="font-medium">{{item.name}}</p>
+        </div>
+        <p class="font-semibold">{{item.value | currency}}</p>
+      </div>
+    </div>
+    <div class="flex items-center justify-between gap-5 mt-5">
+      <div class="flex flex-col">
+        <p class="font-semibold">¿Querés aprender a administrar tus finanzas?</p>
+        <p>Mirá las recomendaciones de nuestros expertos.</p>
+      </div>
+      <button (click)="toggleFinanceRecommendations()"
+        class="text-[#3564FD] max-w-[3.875rem] w-full font-medium py-2 px-4 border border-[#3564FD] rounded-full hover:text-[#022A9B] hover:border-[#022A9B] duration-200">Ver</button>
+    </div>    
+  </ng-template>
+
+</div>
