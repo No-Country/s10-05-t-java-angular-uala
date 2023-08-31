@@ -7,15 +7,19 @@
 #EXPOSE 8080
 #ENTRYPOINT ["java", "-jar", "uala.jar"]
 
-FROM openjdk:17-jdk-slim AS build
+FROM maven:3.8.3-openjdk-17 as builder
 
-COPY pom.xml mvnw ./ COPY .mvn .mvn 
-RUN ./mvnw dependency:resolve
+WORKDIR /workdir
+COPY pom.xml .
+COPY src ./src
 
-COPY src src 
-RUN ./mvnw package
 
-FROM openjdk:17-jdk-slim 
-WORKDIR demo 
-COPY --from=build target/uala-0.0.1-SNAPSHOT.jar demo.jar 
-ENTRYPOINT ["java", "-jar", "demo.jar"]
+RUN mvn package -DskipTests
+
+
+FROM openjdk:17.0-jdk-slim
+
+COPY --from=builder /workdir/target/uala-0.0.1-SNAPSHOT.jar /myproj.jar
+
+
+CMD ["java" , "-Djava.security.egd=file:/dev/./urandom", "-jar", "/myproj.jar"]
