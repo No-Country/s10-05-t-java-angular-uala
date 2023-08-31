@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowTrendUp, faBagShopping, faCar, faCartShopping, faDeleteLeft, faFileLines, faMagnifyingGlass, faPersonWalking, faUtensils } from '@fortawesome/free-solid-svg-icons';
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { faArrowTrendUp, faBagShopping, faCar, faCartShopping, faCircleExclamation, faDeleteLeft, faFileLines, faInfo, faMagnifyingGlass, faPersonWalking, faUtensils, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faClone, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TotalExpensesPipe } from 'src/app/pipes/total-expenses.pipe';
 
@@ -32,6 +32,9 @@ export class HomeComponent {
   faUtensils = faUtensils;
   faPersonWalking = faPersonWalking;
   faCar = faCar;
+  faXmark = faXmark;
+  faClone = faClone;
+  faCircleExclamation = faCircleExclamation;
 
   balanceVisibility: boolean = false;
 
@@ -43,6 +46,18 @@ export class HomeComponent {
 
   toggleBalanceVisibility() {
     this.balanceVisibility = !this.balanceVisibility;
+  }
+
+  showAliasModal() {
+    let dialog = document.getElementById('alias-dialog');
+    // @ts-ignore
+    dialog?.showModal();
+  }
+
+  closeAliasModal() {
+    let dialog = document.getElementById('alias-dialog');
+    // @ts-ignore
+    dialog?.close();
   }
 
   data: any[] = [
