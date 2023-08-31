@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.noCountry.uala.UalaApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.485 s - in com.noCountry.uala.UalaApplicationTests
