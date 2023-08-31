@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faCopy } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-by-cash',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./by-cash.component.css']
 })
 export class ByCashComponent {
-
+  faCopy=faCopy;
 }

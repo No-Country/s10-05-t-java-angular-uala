@@ -1,0 +1,12 @@
+select:not([size]) {
+  background-image: url("/assets/svg/select.svg");
+
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 0.75em 0.75em;
+  font-size: 16px;
+  padding: 10px;
+  padding-right: 2.5rem;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
