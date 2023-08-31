@@ -31,7 +31,7 @@ export class ExpensesComponent {
   faChevronLeft = faChevronLeft;
   faPen = faPen;
 
-  financeRecommendations: boolean = true;
+  financeRecommendations: boolean = false;
 
   gastos = [
     {
