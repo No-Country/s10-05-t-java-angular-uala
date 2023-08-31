@@ -14,9 +14,52 @@
               </button>
             </div>
           </div>
-          <button class="text-[#3564FD] max-w-[6.8rem] w-full font-medium py-2 px-4 border border-[#3564FD] rounded-full hover:text-[#022A9B] hover:border-[#022A9B] duration-200">
+          <button (click)="showAliasModal()" class="text-[#3564FD] max-w-[6.8rem] w-full font-medium py-2 px-4 border border-[#3564FD] rounded-full hover:text-[#022A9B] hover:border-[#022A9B] duration-200">
             Ver CVU
           </button>
+
+          
+
+          <dialog id="alias-dialog" class="pt-5 pb-10 px-6 rounded-2xl max-w-[28rem] w-full">
+
+            <div class="flex justify-end">
+              <button class="text-[#818181] text-xl ps-2" (click)="closeAliasModal()">
+                <p class="sr-only">Close modal</p>
+                <fa-icon [icon]="faXmark"></fa-icon>
+              </button>
+            </div>
+            <div>
+              <p class="font-semibold">CVU (Clave virtual uniforme)</p>
+              <p class="text-sm">Podés copiar tu CVU / ALIAS aquí:</p>
+            </div>            
+            <div class="flex justify-between text-[#3564FD] py-5 border-b">
+              <div>
+                <p class="text-lg">CVU</p>
+                <p class="font-medium text-[#3A3A3A]">0000008500133622146280</p>
+              </div>
+              <button class="text">
+                <p class="sr-only">Copy CVU</p>
+                <fa-icon [icon]="faClone"></fa-icon>
+              </button>
+            </div>            
+            <div class="flex justify-between text-[#3564FD] py-5 border-b">
+              <div>
+                <p class="text-lg">Alias</p>
+                <p class="font-medium text-[#3A3A3A]">pablo.alvarez.uala.123</p>
+              </div>
+              <button class="text">
+                <p class="sr-only">Copy Alias</p>
+                <fa-icon [icon]="faClone"></fa-icon>
+              </button>
+            </div>
+            <div class="flex flex-col gap-5 pt-10">
+              <p class="text-[#3564FD] text-xs">El <span class="font-semibold">CVU</span> es el número que identifica a <span class="font-semibold">tu cuenta Ualá. Te sirve para recibir o enviar plata</span> desde o hacia cualquier cuenta bancaria o billetera virtual.</p>
+              <div class="rounded-2xl bg-[#3564FD]/[15%] flex items-center gap-4 p-5">
+                <fa-icon class="text-[#3A3A3A] text-xl" [icon]="faCircleExclamation"></fa-icon>
+                <p class="text-xs">Los cajeros automáticos todavía no permiten transferir a un CVU.</p>
+              </div>
+            </div>
+          </dialog>
         </div>
         <div class="py-5 border-b">
           <div class="flex items-center justify-between">
@@ -59,7 +102,35 @@
     <div>
       <div class="px-6 py-5 bg-white custom-blue-shadow rounded-2xl">
         <p class="text-[#3A3A3A] font-semibold">Análisis de gastos</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid labore corrupti ab! Molestias esse dolores reprehenderit libero exercitationem est laborum impedit quisquam perferendis, veritatis possimus at asperiores ullam voluptatum porro obcaecati voluptate doloremque ex eum sint in animi aperiam non. Qui dolorum commodi voluptatem quaerat fugiat totam quod illo hic eum esse earum ipsa, exercitationem rerum libero dolores enim recusandae aperiam cupiditate sunt itaque! Velit et architecto deserunt, voluptas amet nesciunt omnis sint, ex quo laboriosam tenetur. Sit, fugiat nisi recusandae laborum accusamus eveniet libero tempore? Mollitia quas doloribus expedita voluptatibus hic tempora quo id totam, dolorem, eveniet consequatur eius.</p>
+        <div class="max-w-[15rem] w-full relative aspect-square mx-auto">          
+          <div class="absolute top-0 flex flex-col items-center justify-center w-full h-full gap-1">
+            <p class="text-sm font-medium">Histórico</p>
+            <p class="text-sm font-bold">{{data | totalExpenses | currency}}</p>
+          </div>
+          <ngx-charts-pie-chart class="relative" [customColors]="customColors" [results]="data" [legend]="false" [labels]="false"
+            [doughnut]="true">
+          </ngx-charts-pie-chart>
+        </div>
+
+        <div class="flex flex-col gap-[1px] bg-[#E5E7EB]">
+          <div *ngFor="let item of data; let i = index" class="flex items-center justify-between py-3 bg-white">
+            <div class="flex items-center gap-3">
+              <div class="min-w-[2.5rem] aspect-square rounded-full flex items-center justify-center text-white {{gastos[i].bgColor}}">
+                <fa-icon class="text-xl" [icon]="gastos[i].icon"></fa-icon>
+              </div>
+              <p class="font-medium">{{item.name}}</p>
+            </div>
+            <p class="font-semibold">{{item.value | currency}}</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center justify-between gap-5 mt-5">
+          <div class="flex flex-col">
+            <p class="font-semibold">¿Querés aprender a administrar tus finanzas?</p>
+            <p>Mirá las recomendaciones de nuestros expertos.</p>
+          </div>
+          <button class="text-[#3564FD] max-w-[3.875rem] w-full font-medium py-2 px-4 border border-[#3564FD] rounded-full hover:text-[#022A9B] hover:border-[#022A9B] duration-200">Ver</button>
+        </div>
       </div>
     </div>
 
