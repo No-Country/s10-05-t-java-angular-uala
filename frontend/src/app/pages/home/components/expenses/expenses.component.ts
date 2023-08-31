@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TotalExpensesPipe } from 'src/app/pipes/total-expenses.pipe';
-import { faBagShopping, faCar, faCartShopping, faDeleteLeft, faFileLines, faPersonWalking, faUtensils, faChevronLeft, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping, faCar, faCartShopping, faDeleteLeft, faFileLines, faPersonWalking, faUtensils } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-expenses',
@@ -28,11 +28,7 @@ export class ExpensesComponent {
   faUtensils = faUtensils;
   faPersonWalking = faPersonWalking;
   faCar = faCar;
-  faChevronLeft = faChevronLeft;
-  faPen = faPen;
-
-  financeRecommendations: boolean = false;
-
+  
   gastos = [
     {
       icon: this.faFileLines,
@@ -94,9 +90,5 @@ export class ExpensesComponent {
       value: '#00E3FF'
     }
   ];
-
-  toggleFinanceRecommendations() {
-    this.financeRecommendations = !this.financeRecommendations;
-  }
 
 }
