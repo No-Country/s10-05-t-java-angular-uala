@@ -1,45 +1,42 @@
-<div class="min-h-screen grid grid-cols-1 lg:grid-cols-2 items-center justify-center">
-    <div class="h-full relative flex items-center justify-center lg:justify-around flex-col">       
+<div class="grid items-center justify-center flex-grow grid-cols-1 lg:grid-cols-2">
+    <div class="relative flex flex-col items-center justify-center h-full lg:justify-around">       
         <div class="hidden md:flex">
 
         </div>
-        <form class="w-80 md:w-96 px-5">
+        <form class="px-5 w-80 md:w-96" [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <section class="flex items-center justify-center md:justify-start">
                 <img src={{uala}} alt="logo">
             </section>
             <section
-                class="py-8 flex flex-col gap-1 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                class="flex flex-col gap-1 py-8 space-y-4 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
                 <article class="relative">
-                    <input autocomplete="off" id="email" name="email" type="text"
-                        class="peer placeholder-transparent h-10 w-full text-base border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                        placeholder="email" />
-                    <label for="email"
+                    <input 
+                        formControlName="nombreUsuario"
+                        autocomplete="off" id="user" name="user" type="text"
+                        class="w-full h-10 text-base text-gray-900 placeholder-transparent border-b-2 border-gray-300 peer focus:outline-none focus:borer-rose-600"
+                        placeholder="Nombre de usuario" />
+                    <label for="user"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Nombre
-                        de usuario, email o DNI</label>
+                        de usuario</label>
                 </article>
-                <article class="relative flex flex-row justify-between items-center border-b-2 border-gray-300">
+                <article class="relative flex flex-row items-center justify-between border-b-2 border-gray-300">
                     <div>
-                        <input autocomplete="off" id="password" name="password" type="password"
-                            class="peer placeholder-transparent h-10 w-full text-base  text-gray-900 focus:outline-none focus:borer-rose-600"
+                        <input autocomplete="off" id="password" name="password" [type]="password? 'text' : 'password'" formControlName="password"
+                            class="w-full h-10 text-base text-gray-900 placeholder-transparent peer focus:outline-none focus:borer-rose-600"
                             placeholder="password" />
                         <label for="password"
                             class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Contraseña</label>
                     </div>
-                    <svg class="hover-color-svg" width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" font-size="24">
-                        <defs>
-                            <path
-                                d="M12 4.5c2.344 0 4.609 1.38 6.73 3.66a22.236 22.236 0 012.39 3.085l.219.348c.042.069.074.122.094.158a.5.5 0 010 .499l-.14.232-.052.085a22.234 22.234 0 01-2.51 3.274C16.608 18.12 14.343 19.5 12 19.5c-2.345 0-4.61-1.38-6.73-3.66a22.232 22.232 0 01-1.974-2.46l-.288-.425a20.078 20.078 0 01-.13-.199l-.288-.464a.5.5 0 01-.06-.463l.037-.08.018-.03c.193-.328.487-.787.873-1.329a21.82 21.82 0 012-2.43C7.53 5.797 9.729 4.5 12 4.5zm0 1c-1.94 0-3.918 1.167-5.82 3.152a20.833 20.833 0 00-1.906 2.318l-.307.442-.135.202-.248.385.137.216.256.388.141.206c.557.802 1.19 1.604 1.884 2.35C7.952 17.256 9.995 18.5 12 18.5c2.005 0 4.048-1.245 5.998-3.34a21.247 21.247 0 002.281-2.945l.136-.215-.136-.215-.256-.387-.141-.206a21.25 21.25 0 00-1.884-2.351C16.048 6.745 14.005 5.5 12 5.5zm0 3a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm0 1a2.5 2.5 0 100 5 2.5 2.5 0 000-5z"
-                                id="PasswordShowOutlinedIcon_05774461524858587_a"></path>
-                        </defs>
-                        <use fill="currentColor" fill-rule="nonzero"
-                            xlink:href="#PasswordShowOutlinedIcon_05774461524858587_a"></use>
-                    </svg>
+                    <button (click)="togglePassword()" type="button" class="hover:text-[#022A9B] text-[#3564FD] duration-200">
+                      <span class="sr-only">Toggle balance visibility</span>
+                      <fa-icon *ngIf="password" [icon]="faEye"></fa-icon>
+                      <fa-icon *ngIf="!password" [icon]="faEyeSlash"></fa-icon>
+                    </button>
                 </article>
                 <div>
                     <span routerLink="" class="text-sm text-[#3564FD]">¿Olvidaste tu contraseña?</span>
                 </div>
-                <button class="bg-[#3564FD]  transition-colors hover:bg-[#0535be] w-full text-white rounded-full  px-5 py-2">Iniciar sesión</button>
+                <button type="submit" [disabled]="loginForm.invalid" [ngClass]="loginForm.invalid? 'opacity-50' : 'hover:bg-[#0535be]'" class="bg-[#3564FD]  transition-colors w-full text-white rounded-full  px-5 py-2">Iniciar sesión</button>
             </section>             
         </form>        
         <div class="text-sm leading-5 flex flex-row gap-2 items-center justify-center max-w-[500px] p-4 md:p-0">
