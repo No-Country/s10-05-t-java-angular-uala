@@ -22,13 +22,13 @@
           </a>
         </li>
         <li class="flex">
-          <a routerLink="/transfers" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]" class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <a routerLink="/trade" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]" class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
             <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faArrowRightArrowLeft"></fa-icon>
             Transferencias
           </a>
         </li>
         <li class="flex">
-          <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          <a routerLink="/transfers" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
             class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
             <fa-icon class="flex items-center justify-center w-6 text-xl text-md aspect-square"
               [icon]="faPlus"></fa-icon>
@@ -89,9 +89,9 @@
     <div class="flex flex-col w-full overflow-y-auto">
       <div class="flex justify-between items-center sticky z-10 top-0 bg-white px-10 min-h-[4.5rem] border-b">
         <div class="flex items-center gap-3">
-          <div class="flex items-center justify-center overflow-hidden bg-[#3564FD]/[15%] rounded-full w-11 aspect-square">
+          <div class="flex items-center justify-center overflow-hidden bg-[#3564FD]/[15%] rounded-full w-11 h-11">
             <ng-container *ngIf="user.img; else noUserImg">
-              <img src="{{user.img}}" alt="Profile user image" class="cover">
+              <img src="{{user.img}}" alt="Profile user image" class="object-cover w-full h-full">
             </ng-container>
             <ng-template #noUserImg>
               <p class="text-[#3564FD] font-semibold">{{user.name | stringInitial}}{{user.lastname | stringInitial}}</p>
@@ -110,5 +110,7 @@
 </ng-container>
 
 <ng-template #noUserLogged>
-  <router-outlet></router-outlet>
+  <div class="flex min-h-screen">
+    <router-outlet></router-outlet>
+  </div>
 </ng-template>
