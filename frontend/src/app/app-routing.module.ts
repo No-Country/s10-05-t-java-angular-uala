@@ -19,6 +19,11 @@ const routes: Routes = [
   {
     path: 'transfers',
     loadChildren: () => import('./pages/transfers/transfers.module').then(m => m.TransfersModule),
+    title: 'Cargar dinero'
+  },
+  {
+    path: 'trade',
+    loadComponent: () => import('./pages/trade/trade.component').then(c => c.TradeComponent),
     title: 'Transferencias'
   }
 ];
