@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { faCircleCheck, faCopy } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-consign',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./consign.component.css']
 })
 export class ConsignComponent {
+  faCopy=faCopy;
+ faCircleCheck= faCircleCheck;
+ public entity:string="";
+ activateRoute=inject(ActivatedRoute);
+ constructor(){
+  this.activateRoute.params.subscribe((param)=>{
+    this.entity = param['entity'];
+    console.log(this.entity);
 
+    });
+ }
 }

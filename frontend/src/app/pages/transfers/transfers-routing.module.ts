@@ -15,7 +15,7 @@ const routes: Routes = [
       {path:'mPago',component:MercadoPagoComponent},
       {path:'confirm',component:ConfirmComponent},
       {path:'byCash',component:ByCashComponent},
-      {path:'consign',component:ConsignComponent},
+      {path:'consign/:entity',component:ConsignComponent},
 
 
       ]
