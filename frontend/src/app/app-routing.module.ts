@@ -9,14 +9,12 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-<<<<<<< HEAD
   
   {
   path: 'login',
   component: LoginComponent
   },
 
-=======
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
@@ -26,7 +24,6 @@ const routes: Routes = [
     loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent),
     title: 'Ualá'
   }
->>>>>>> 364f40287c06f9dc3e7c2db42f230a6c2d6c083d
 ];
 
 @NgModule({

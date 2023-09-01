@@ -19,6 +19,8 @@ button:hover{
     border: 1px solid #3564FD;
 }
 
+
+
 /* .login-form{
     align-items: left;
     justify-content: left;
@@ -39,3 +41,11 @@ button:hover{
     align-content: center;
     align-items: center;
 }
+/* 
+.icon{
+    position: absolute;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+} */
+
