@@ -25,6 +25,11 @@ const routes: Routes = [
     path: 'trade',
     loadComponent: () => import('./pages/trade/trade.component').then(c => c.TradeComponent),
     title: 'Transferencias'
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full'
   }
 ];
 
