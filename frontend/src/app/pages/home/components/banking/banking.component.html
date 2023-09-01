@@ -15,9 +15,7 @@
       class="text-[#3564FD] max-w-[6.8rem] w-full font-medium py-2 px-4 border border-[#3564FD] rounded-full hover:text-[#022A9B] hover:border-[#022A9B] duration-200">
       Ver CVU
     </button>
-
     <dialog id="alias-dialog" class="pt-5 pb-10 px-6 rounded-2xl max-w-[28rem] w-full">
-
       <div class="flex justify-end">
         <button class="text-[#818181] text-xl ps-2" (click)="closeAliasModal()">
           <p class="sr-only">Close modal</p>
@@ -77,13 +75,11 @@
     </div>
   </div>
   <div class="flex gap-5 pt-5">
-    <button
-      class="w-full px-5 py-2 bg-[#3564FD]/[15%] hover:bg-[#3564FD]/[25%] text-[#3564FD] rounded-full font-medium duration-200">Cargar
+    <a routerLink="/transfers" class="w-full text-center px-5 py-2 bg-[#3564FD]/[15%] hover:bg-[#3564FD]/[25%] text-[#3564FD] rounded-full font-medium duration-200">Cargar
       dinero
-    </button>
-    <button
-      class="w-full px-5 py-2 bg-[#3564FD]/[15%] hover:bg-[#3564FD]/[25%] text-[#3564FD] rounded-full font-medium duration-200">Transferir
+    </a>
+    <a routerLink="/trade" class="w-full text-center px-5 py-2 bg-[#3564FD]/[15%] hover:bg-[#3564FD]/[25%] text-[#3564FD] rounded-full font-medium duration-200">Transferir
       dinero
-    </button>
+    </a>
   </div>
 </div>

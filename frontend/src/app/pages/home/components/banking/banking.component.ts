@@ -3,6 +3,7 @@ import { faArrowTrendUp, faCircleExclamation, faXmark } from '@fortawesome/free-
 import { faClone, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-banking',
@@ -11,7 +12,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   standalone: true,
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule
   ]
 })
 export class BankingComponent {
