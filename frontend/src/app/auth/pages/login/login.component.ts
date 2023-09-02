@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css'],
   host: {'class': 'flex flex-grow'}
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   uala: string = '../../../../assets/svg/uala.svg'
   login: string = '../../../../assets/svg/login.svg'
   google: string = '../../../../assets/svg/google.svg'
@@ -20,6 +20,7 @@ export class LoginComponent {
   faEyeSlash = faEyeSlash;
 
   password: boolean = false;
+  isUserLogged: boolean | undefined;
 
   loginForm = this.formBuilder.nonNullable.group({
     nombreUsuario: ['Marcos192000', [Validators.required]],
@@ -32,16 +33,28 @@ export class LoginComponent {
     private auth: AuthService
   ) { }
 
-  
+  ngOnInit(): void {
+    this.auth.getIsUserLogged().subscribe({
+      next: (res) => {
+        this.isUserLogged = res;
+        if (this.isUserLogged) {
+          this.router.navigate(['home']);
+        }
+      }
+    });
+  }
 
   onLogin() {
     this.auth.login(this.loginForm.getRawValue()).subscribe({
-      next: (res) => {
+      next: (res: any) => {
+        console.log(res);
+        localStorage.setItem('token', res.token);
         this.router.navigate(['home']);
       },
       error: (err) => {
-        console.log(err)
-      }
+        console.log(err);
+      },
+      complete: () => this.auth.setIsUserLogged()
     });
   }
 
