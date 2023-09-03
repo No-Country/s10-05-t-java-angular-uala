@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css'],
   host: {'class': 'flex flex-grow'}
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   uala: string = '../../../../assets/svg/uala.svg'
   login: string = '../../../../assets/svg/login.svg'
   google: string = '../../../../assets/svg/google.svg'
@@ -33,17 +33,6 @@ export class LoginComponent implements OnInit {
     private auth: AuthService
   ) { }
 
-  ngOnInit(): void {
-    this.auth.getIsUserLogged().subscribe({
-      next: (res) => {
-        this.isUserLogged = res;
-        if (this.isUserLogged) {
-          this.router.navigate(['home']);
-        }
-      }
-    });
-  }
-
   onLogin() {
     this.auth.login(this.loginForm.getRawValue()).subscribe({
       next: (res: any) => {
@@ -53,8 +42,7 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-      },
-      complete: () => this.auth.setIsUserLogged()
+      }
     });
   }
 
