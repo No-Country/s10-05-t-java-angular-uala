@@ -15,11 +15,11 @@ export class TransfersComponent {
   changePage(path:string){
     console.log(path);
     if(path=="byTransfer"){
-      this.router.navigateByUrl(`/transfers`)
+      this.router.navigateByUrl(`/main/charge`)
       this.statePage=true;
     }
     else if(path=="byCash"){
-      this.router.navigateByUrl(`/transfers/${path}`)
+      this.router.navigateByUrl(`/main/charge/${path}`)
       this.statePage=false  ;
     }
 

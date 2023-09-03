@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TransfersRoutingModule } from './transfers-routing.module';
+import { ChargeRoutingModule} from './charge-routing.module';
 import { ByTransfersComponent } from './pages/by-transfers/by-transfers.component';
 import { RouterModule } from '@angular/router';
 import { TransfersComponent } from './transfers.component';
@@ -23,9 +23,9 @@ import { ConsignComponent } from './pages/by-cash/consign/consign.component';
   ],
   imports: [
     CommonModule,
-    TransfersRoutingModule,
+    ChargeRoutingModule,
     RouterModule,
     FontAwesomeModule
   ]
 })
-export class TransfersModule { }
+export class ChargeModule { }
