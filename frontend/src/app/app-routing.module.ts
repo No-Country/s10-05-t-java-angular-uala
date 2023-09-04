@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -31,8 +32,8 @@ const routes: Routes = [
         title: 'Ualá'
       },
       {
-        path: 'transfers',
-        loadChildren: () => import('./pages/transfers/transfers.module').then(m => m.TransfersModule),
+        path: 'charge',
+        loadChildren: () => import('./pages/charge/charge.module').then(m => m.ChargeModule),
         title: 'Cargar dinero'
       },
       {
