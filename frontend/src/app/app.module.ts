@@ -7,8 +7,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthModule } from './auth/auth.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TransferComponent } from './pages/recarga/transfer/transfer.component';
-import { EfectivoComponent } from './pages/recarga/efectivo/efectivo.component';
 
 @NgModule({
   declarations: [
