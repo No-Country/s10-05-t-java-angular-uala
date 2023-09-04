@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="49dbea50-a987-43e9-ac53-bdf5833aebd6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noCountry/uala/Config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noCountry/uala/Config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noCountry/uala/security/MainSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noCountry/uala/security/MainSecurity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noCountry/uala/security/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noCountry/uala/security/controller/AuthController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
