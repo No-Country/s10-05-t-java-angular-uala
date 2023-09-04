@@ -19,11 +19,18 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
     "@fortawesome/angular-fontawesome": "^0.13.0",
+<<<<<<< HEAD
     "fa-icon": "^0.0.0",
+=======
+>>>>>>> d6457f613ce3f7fa9c2022371f19561460cca98d
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
+<<<<<<< HEAD
+=======
+    "@swimlane/ngx-charts": "^20.4.1",
+>>>>>>> d6457f613ce3f7fa9c2022371f19561460cca98d
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -32,6 +39,9 @@
     "@angular-devkit/build-angular": "^16.1.3",
     "@angular/cli": "~16.1.3",
     "@angular/compiler-cli": "^16.1.0",
+    "@types/d3-scale": "^4.0.4",
+    "@types/d3-selection": "^3.0.6",
+    "@types/d3-shape": "^3.1.2",
     "@types/jasmine": "~4.3.0",
     "autoprefixer": "^10.4.15",
     "jasmine-core": "~4.6.0",

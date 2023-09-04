@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowTrendUp, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { BankingComponent } from './components/banking/banking.component';
+import { MovementsComponent } from './components/movements/movements.component';
+import { ExpensesComponent } from './components/expenses/expenses.component';
 
 @Component({
   selector: 'app-home',
@@ -10,29 +9,48 @@ import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./home.component.css'],
   standalone: true,
   imports: [
-    CommonModule,
-    FontAwesomeModule
+    BankingComponent,
+    MovementsComponent,
+    ExpensesComponent
   ],
   host: {'class': 'flex flex-grow'}
 })
 export class HomeComponent {
 
-  faEye = faEye;
-  faEyeSlash = faEyeSlash;
-  faArrowTrendUp = faArrowTrendUp;
-  faMagnifyingGlass = faMagnifyingGlass;
-
-  balanceVisibility: boolean = false;
-
   user = {
     name: 'Federico',
     lastname: 'Burgos',
-    balance: 365400
+    balance: 365400,
+    expenses: [
+      {
+        name: 'Servicios y débitos automáticos',
+        value: 7000
+      },
+      {
+        name: 'Compras',
+        value: 5000
+      },
+      {
+        name: 'Otros',
+        value: 3000
+      },
+      {
+        name: 'Supermercados y alimentos',
+        value: 1900
+      },
+      {
+        name: 'Restaurantes y bares',
+        value: 1500
+      },
+      {
+        name: 'Salud y deportes',
+        value: 1200
+      },
+      {
+        name: 'Transporte y auto',
+        value: 1200
+      }
+    ]
   }
-
-  toggleBalanceVisibility() {
-    this.balanceVisibility = !this.balanceVisibility;
-  }
-
 
 }
