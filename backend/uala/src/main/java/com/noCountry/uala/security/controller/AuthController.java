@@ -25,7 +25,6 @@ public class AuthController {
 		usuarioService.saveUser(nuevoUsuario);
 			return new ResponseEntity<>(new Mensaje("Created User"), HttpStatus.CREATED);
 	}
-	@CrossOrigin(origins = "https://s10-05-t-java-angular-uala.web.app")
 	@PostMapping("/login")
 	public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario ){
 	JwtDto jwtDto= usuarioService.login(loginUsuario);
