@@ -1,6 +1,7 @@
 package com.noCountry.uala.security.service;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.noCountry.uala.models.entity.Wallet;
 import com.noCountry.uala.repository.WalletRepository;
 import com.noCountry.uala.security.dto.JwtDto;
@@ -74,6 +75,10 @@ public class UsuarioService {
 		usuario.setRoles(roles);
 		Wallet wallet = new Wallet();
 		wallet.setBalance(00.00);
+		wallet.setAlias(wallet.genericsAlias());
+		System.out.println("==============================================================================");
+		System.out.println(wallet.genericsAlias());
+		System.out.println("==============================================================================");
 		wallet.setCbu((long) wallet.generatedCbu());
 		usuario.setWallet(wallet);
         usuarioRepository.save(usuario);

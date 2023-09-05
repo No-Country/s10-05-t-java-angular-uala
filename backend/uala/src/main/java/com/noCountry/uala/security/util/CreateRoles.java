@@ -49,6 +49,7 @@ public class CreateRoles implements CommandLineRunner {
 			usuario1.setRoles(roles);
 			Wallet wallet = new Wallet();
 			wallet.setBalance(00.00);
+			wallet.setAlias(wallet.genericsAlias());
 			wallet.setCbu((long) wallet.generatedCbu());
 			usuario1.setWallet(wallet);
 			usuarioRepository.save(usuario1);
@@ -63,6 +64,7 @@ public class CreateRoles implements CommandLineRunner {
 			usuario2.setRoles(roles2);
 			Wallet wallet2 = new Wallet();
 			wallet2.setBalance(00.00);
+			wallet2.setAlias(wallet2.genericsAlias());
 			wallet2.setCbu((long) wallet.generatedCbu());
 			usuario2.setWallet(wallet2);
 			usuarioRepository.save(usuario2);
