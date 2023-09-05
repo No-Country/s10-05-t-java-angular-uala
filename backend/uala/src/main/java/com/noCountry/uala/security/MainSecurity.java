@@ -78,6 +78,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 		http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	@Bean
+
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration config = new CorsConfiguration();
 		config.addAllowedOrigin("http://localhost:4200"); // Agregar aquí los orígenes permitidos
