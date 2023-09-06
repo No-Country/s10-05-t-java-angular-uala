@@ -36,15 +36,15 @@ public class Wallet {
 		this.cbu= cbu;
 	}
 	public double generatedCbu(){
-		long cbu  = (long) (Math.random()* 5000000 * 30000);
+		long cbu  = (long) (Math.random()* 5000000 * 30000 * 490000000);
 		return cbu;
 	}
 
 	public String genericsAlias(){
 		Random r = new Random();
-		String[] aliasDef = {"manzana","zapatilla","maiz","teclado","dia","noche","blanco","negro","perro","platano","paloma"};
+		String[] aliasDef = {"manzana","zapatilla","maiz","teclado","rojo","dia","noche","blanco","negro","perro","platano","paloma"};
 		String[] aliasDef1 = {"palo","dinero","dev","backend","frontend","gato","backend","telefe","rueda","papel","amarillo"};
-		String[] aliasDef2 = {"mariposa","caballo","rosas","paloma","futbol","disco","hot","zapáto","pato","pc","foca","blanco"};
+		String[] aliasDef2 = {"mariposa","caballo","rosas","pajaro","futbol","disco","hot","zapáto","pato","pc","foca","blanco"};
 		int e = r.nextInt(aliasDef.length);
 		int f = r.nextInt(aliasDef1.length);
 		int g = r.nextInt(aliasDef2.length);
