@@ -10,6 +10,7 @@ import { ByCashComponent } from './pages/by-cash/by-cash.component';
 import { MercadoPagoComponent } from './pages/by-transfers/mercado-pago/mercado-pago.component';
 import { ConfirmComponent } from './pages/by-transfers/confirm/confirm.component';
 import { ConsignComponent } from './pages/by-cash/consign/consign.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { ConsignComponent } from './pages/by-cash/consign/consign.component';
     CommonModule,
     ChargeRoutingModule,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,FormsModule
   ]
 })
 export class ChargeModule { }

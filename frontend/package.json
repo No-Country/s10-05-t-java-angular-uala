@@ -25,7 +25,9 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@swimlane/ngx-charts": "^20.4.1",
+    "fa-icon": "^0.0.0",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.7.27",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },

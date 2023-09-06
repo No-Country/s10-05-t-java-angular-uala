@@ -26,16 +26,11 @@ button:hover{
     text-align: left;
 } */
 
-/* .derecha{
-    align-items: right;
-    justify-content: right;
-    align-content: right;
-    text-align: right;
-} */
-
 .footer{
     text-align: center;
     background-color: #F6F9FF ;
     align-content: center;
     align-items: center;
 }
+
+

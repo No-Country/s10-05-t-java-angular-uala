@@ -1,5 +1,5 @@
 <div class="flex h-screen overflow-hidden">
-  <div class="max-w-[16rem] w-full flex-grow flex flex-col border-r">
+  <div class="max-w-[16rem] w-full flex-grow flex flex-col border-r hidden md:block">
     <div class="min-h-[4.5rem] flex items-center px-5">
       <a routerLink="home">
         <span class="sr-only">Home</span>
@@ -58,7 +58,7 @@
         </a>
       </li>
       <li class="flex">
-        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+        <a routerLink="/main/pagar" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
           class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
           <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faDollarSign"></fa-icon>
           Pagos y recargas
@@ -84,6 +84,99 @@
           <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square"
             [icon]="faArrowRightFromBracket"></fa-icon>
           Cerrar sesión
+        </button>
+      </li>
+    </ul>
+  </div>
+  <!-- sidebar movil -->
+  <div class="max-w-[4rem] w-full flex-grow flex flex-col border-r md:hidden ">
+    <div class="min-h-[4.5rem] flex items-center px-2.5">
+      <a routerLink="home">
+        <span class="sr-only">Home</span>
+        <img class="max-w-[8rem]" src="../../../assets/svg/uala.svg" alt="brand logo">
+      </a>
+    </div>
+    <ul class="flex flex-col gap-1 px-3 pb-10 text-sm text-[#3A3A3A] overflow-y-auto">
+      <li class="flex">
+        <a routerLink="home" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faHouse"></fa-icon>
+
+        </a>
+      </li>
+      <li class="flex">
+        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faCreditCard"></fa-icon>
+
+        </a>
+      </li>
+      <li class="flex">
+        <a routerLink="trade" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square"
+            [icon]="faArrowRightArrowLeft"></fa-icon>
+
+        </a>
+      </li>
+      <li class="flex">
+        <a routerLink="charge" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl text-md aspect-square" [icon]="faPlus"></fa-icon>
+
+        </a>
+      </li>
+      <li class="flex">
+        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faArrowTrendUp"></fa-icon>
+
+
+        </a>
+      </li>
+      <li class="flex">
+        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faCoins"></fa-icon>
+
+
+        </a>
+      </li>
+      <li class="flex">
+        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faThumbsUp"></fa-icon>
+
+
+        </a>
+      </li>
+      <li class="flex">
+        <a routerLink="/main/pagar" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faDollarSign"></fa-icon>
+
+        </a>
+      </li>
+      <li class="flex">
+        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faTags"></fa-icon>
+
+        </a>
+      </li>
+      <li class="flex">
+        <a routerLink="/help" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square"
+            [icon]="faCircleQuestion"></fa-icon>
+
+        </a>
+      </li>
+      <li class="flex">
+        <button (click)="logout()" class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+          <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square"
+            [icon]="faArrowRightFromBracket"></fa-icon>
+
         </button>
       </li>
     </ul>

@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
+import { PagarComponent } from './pages/pagar/pagar.component';
+import { ServicioComponent } from './pages/pagar/servicio/servicio.component';
 
 
 const routes: Routes = [
@@ -10,6 +13,12 @@ const routes: Routes = [
     redirectTo: 'main',
     pathMatch: 'full'
   },
+  
+  {
+  path: 'login',
+  component: LoginComponent
+  },
+
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
@@ -40,6 +49,11 @@ const routes: Routes = [
         path: 'trade',
         loadComponent: () => import('./pages/trade/trade.component').then(c => c.TradeComponent),
         title: 'Transferencias'
+      },
+      {
+        path: 'pagar',
+        loadChildren: () => import('./pages/pagar/pagar.module').then(c => c.PagarModule),
+        title: 'Pagos y recargas'
       }
     ],
   },
