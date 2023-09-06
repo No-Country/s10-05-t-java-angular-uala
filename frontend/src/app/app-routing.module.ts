@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
+import { authGuard } from './guards/auth.guard';
+import { loginGuard } from './guards/login.guard';
+import { PagarComponent } from './pages/pagar/pagar.component';
+import { ServicioComponent } from './pages/pagar/servicio/servicio.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'main',
     pathMatch: 'full'
   },
   
@@ -14,19 +19,57 @@ const routes: Routes = [
   component: LoginComponent
   },
 
+  // {
+  //   path: 'pagar',
+  //   component: PagarComponent
+  //   },
+    // {
+    //   path: 'servicio',
+    //   component: ServicioComponent
+    //   },
+
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    canActivate: [loginGuard]
   },
   {
-    path: 'home',
-    loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent),
-    title: 'Ualá'
+    path: 'main',
+    loadComponent: () => import('./pages/main/main.component').then(c => c.MainComponent),
+    title: 'Ualá',
+    canActivate: [authGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent),
+        title: 'Ualá'
+      },
+      {
+        path: 'charge',
+        loadChildren: () => import('./pages/charge/charge.module').then(m => m.ChargeModule),
+        title: 'Cargar dinero'
+      },
+      {
+        path: 'trade',
+        loadComponent: () => import('./pages/trade/trade.component').then(c => c.TradeComponent),
+        title: 'Transferencias'
+      },
+      {
+        path: 'pagar',
+        loadChildren: () => import('./pages/pagar/pagar.module').then(c => c.PagarModule),
+        title: 'Pagos y recargas'
+      }
+    ],
   },
   {
-    path: 'transfers',
-    loadChildren: () => import('./pages/transfers/transfers.module').then(m => m.TransfersModule),
-    title: 'Transferencias'
+    path: '**',
+    redirectTo: 'main',
+    pathMatch: 'full'
   }
 ];
 

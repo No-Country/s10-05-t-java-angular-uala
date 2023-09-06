@@ -1,0 +1,23 @@
+<div class="flex-grow px-10 bg-[#F3F4F6] py-7 h-screen">
+  <div class="grid w-full grid-cols-1">
+    <div class="flex flex-col gap-2">
+      <p class="font-semibold text-[#3A3A3A] text-3xl">Cargar dinero</p>
+      <div class="flex gap-1 text-[#818181] text-lg">
+        <p class="font-medium">¿Cómo querés cargar dinero?</p>
+
+      </div>
+
+        <div
+          class="px-10 py-5 lg:mx-11 bg-white custom-blue-shadow rounded-2xl h-96"
+        >
+        <div class="flex gap-x-14">
+          <div class="grow" (click)="changePage('byTransfer')"><a  ><p  [class.Cblue]="statePage" [class.Cgray]="statePage==false" class="text-center  cursor-pointer">Por transferencia </p></a><hr class=" h-0.5" [class.Bblue]="statePage" [class.Bgray]="statePage==false"> </div>
+          <div class="grow" (click)="changePage('byCash')"><a ><p  [class.Cblue]="statePage==false" [class.Cgray]="statePage" class="text-center  cursor-pointer">Con efectivo</p></a><hr class=" h-0.5" [class.Bblue]="statePage==false" [class.Bgray]="statePage"> </div>
+        </div>
+
+        <router-outlet></router-outlet>
+      </div>
+
+  </div>
+ </div>
+

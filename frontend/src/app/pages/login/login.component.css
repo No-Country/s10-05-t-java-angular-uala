@@ -19,20 +19,11 @@ button:hover{
     border: 1px solid #3564FD;
 }
 
-
-
 /* .login-form{
     align-items: left;
     justify-content: left;
     align-content: left;
     text-align: left;
-} */
-
-/* .derecha{
-    align-items: right;
-    justify-content: right;
-    align-content: right;
-    text-align: right;
 } */
 
 .footer{
@@ -41,11 +32,5 @@ button:hover{
     align-content: center;
     align-items: center;
 }
-/* 
-.icon{
-    position: absolute;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-} */
+
 
