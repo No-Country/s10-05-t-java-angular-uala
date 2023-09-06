@@ -42,11 +42,13 @@ public class Wallet {
 
 	public String genericsAlias(){
 		Random r = new Random();
-		String[] aliasDef = {"manzana","zapatilla","maiz","teclado","dia","noche","blanco","negro","perro","platano","paloma","palo","dinero","dev","backend","frontend","gato"};
+		String[] aliasDef = {"manzana","zapatilla","maiz","teclado","dia","noche","blanco","negro","perro","platano","paloma"};
+		String[] aliasDef1 = {"palo","dinero","dev","backend","frontend","gato","backend","telefe","rueda","papel","amarillo"};
+		String[] aliasDef2 = {"mariposa","caballo","rosas","paloma","futbol","disco","hot","zapáto","pato","pc","foca","blanco"};
 		int e = r.nextInt(aliasDef.length);
-		int f = r.nextInt(aliasDef.length);
-		int g = r.nextInt(aliasDef.length);
-		String alias = (aliasDef[e]+"."+aliasDef[f]+"."+aliasDef[g]);
+		int f = r.nextInt(aliasDef1.length);
+		int g = r.nextInt(aliasDef2.length);
+		String alias = (aliasDef[e]+"."+aliasDef1[f]+"."+aliasDef2[g]);
 		return  alias;
 	}
 
