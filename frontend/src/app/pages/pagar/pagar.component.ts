@@ -15,11 +15,11 @@ export class PagarComponent {
   changePage(path:string){
     console.log(path);
     if(path=="servicio"){
-      this.router.navigateByUrl(`/main/servicio`)
+      this.router.navigateByUrl(`/main/pagar`)
       this.statePage=true;
     }
     else if(path=="recarga"){
-      this.router.navigateByUrl(`/main/recarga/${path}`)
+      this.router.navigateByUrl(`/main/pagar/recarga`)
       this.statePage=false  ;
     }
 

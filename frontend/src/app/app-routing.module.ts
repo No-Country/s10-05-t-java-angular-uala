@@ -19,15 +19,6 @@ const routes: Routes = [
   component: LoginComponent
   },
 
-  // {
-  //   path: 'pagar',
-  //   component: PagarComponent
-  //   },
-    // {
-    //   path: 'servicio',
-    //   component: ServicioComponent
-    //   },
-
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
