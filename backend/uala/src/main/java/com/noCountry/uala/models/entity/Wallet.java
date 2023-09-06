@@ -50,7 +50,6 @@ public class Wallet {
 		return  alias;
 	}
 
-
 	 public  void listPayment(Payments payments){
 		paymentsList.add(payments);
 	}

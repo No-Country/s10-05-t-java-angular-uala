@@ -12,6 +12,7 @@ public class UserResponseDto {
 	  private String email;
 	  private double balance ;
 	  private long CBU;
+	  private String alias;
 
 
 }

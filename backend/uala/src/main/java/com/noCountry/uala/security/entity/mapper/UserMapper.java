@@ -12,9 +12,9 @@ public class UserMapper {
 		responseDto.setName(usuario.getNombre());
 		responseDto.setNameUser(usuario.getNombreUsuario());
         responseDto.setEmail(usuario.getEmail());
+		responseDto.setAlias(usuario.getWallet().getAlias());
 		responseDto.setBalance(usuario.getWallet().totalList());
 		responseDto.setCBU(usuario.getWallet().getCbu());
 		return responseDto;
 	}
-
 }
