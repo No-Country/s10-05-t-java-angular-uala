@@ -8,7 +8,6 @@ public class ServicePayment {
     private Long id_payment;
     private String service;
     private String refPayment;
-    private boolean status;
 
 
 }
