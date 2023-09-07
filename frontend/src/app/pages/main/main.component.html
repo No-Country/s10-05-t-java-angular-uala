@@ -1,8 +1,10 @@
 <div class="flex h-screen overflow-hidden">
-  <div class="max-w-[16rem] w-full flex-grow flex flex-col border-r">
+
+  <!-- desktop sidebar -->
+  <div class="max-w-[16rem] w-full flex-grow flex-col border-r hidden lg:flex">
     <div class="min-h-[4.5rem] flex items-center px-5">
       <a routerLink="home">
-        <span class="sr-only">Home</span>
+        <span class="sr-only">Go to home page</span>
         <img class="max-w-[10rem]" src="../../../assets/svg/uala.svg" alt="brand logo">
       </a>
     </div>
@@ -88,9 +90,110 @@
       </li>
     </ul>
   </div>
+
+  <!-- mobile sidebar -->
+  <dialog #sidebar id="sidebar" class="relative w-full h-full bg-transparent lg:hidden">
+    <div [ngClass]="sidebar.open? 'left-0' : 'left-[-16rem]'" class="max-w-[16rem] absolute w-full min-h-screen duration-300 flex-grow flex-col border-r bg-white">
+      <div class="min-h-[4.5rem] flex items-center justify-between px-5">
+        <a (click)="closeSidebar()" routerLink="home">
+          <span class="sr-only">Go to home page</span>
+          <img class="max-w-[10rem]" src="../../../assets/svg/uala.svg" alt="brand logo">
+        </a>
+        <button (click)="closeSidebar()">
+          <fa-icon [icon]="faXmark"></fa-icon>
+        </button>
+      </div>
+      <ul class="flex flex-col gap-1 px-3 pb-10 text-sm text-[#3A3A3A] overflow-y-auto">
+        <li class="flex">
+          <a (click)="closeSidebar()" routerLink="home" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+            class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faHouse"></fa-icon>
+            Inicio
+          </a>
+        </li>
+        <li class="flex">
+          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+            class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faCreditCard"></fa-icon>
+            Tarjeta
+          </a>
+        </li>
+        <li class="flex">
+          <a (click)="closeSidebar()" routerLink="trade" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+            class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square"
+              [icon]="faArrowRightArrowLeft"></fa-icon>
+            Transferencias
+          </a>
+        </li>
+        <li class="flex">
+          <a (click)="closeSidebar()" routerLink="charge" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+            class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl text-md aspect-square" [icon]="faPlus"></fa-icon>
+            Cargar dinero
+          </a>
+        </li>
+        <li class="flex">
+          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+            class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faArrowTrendUp"></fa-icon>
+            Inversiones
+          </a>
+        </li>
+        <li class="flex">
+          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+            class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faCoins"></fa-icon>
+            Consumo en cuotas
+          </a>
+        </li>
+        <li class="flex">
+          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+            class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faThumbsUp"></fa-icon>
+            Prestamos
+          </a>
+        </li>
+        <li class="flex">
+          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+            class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faDollarSign"></fa-icon>
+            Pagos y recargas
+          </a>
+        </li>
+        <li class="flex">
+          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+            class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faTags"></fa-icon>
+            Descuentos
+          </a>
+        </li>
+        <li class="flex">
+          <a (click)="closeSidebar()" href="https://app.promptitude.io/share/cEVxuilvO0BkZDaKwtro/S62Yny4Q8cHeWWo3wrkx"
+            class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faCircleQuestion"></fa-icon>
+            Ayuda
+          </a>
+        </li>
+        <li class="flex">
+          <button (click)="logout(); closeSidebar()" class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
+            <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square"
+              [icon]="faArrowRightFromBracket"></fa-icon>
+            Cerrar sesión
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-grow bg-[#001A61]/40" (click)="closeSidebar()"></div>
+  </dialog>
+
+  <!-- header -->
   <div class="flex flex-col w-full overflow-y-auto">
     <div class="flex justify-between items-center sticky z-10 top-0 bg-white px-10 min-h-[4.5rem] border-b">
       <div class="flex items-center gap-3">
+        <button class="lg:hidden" (click)="showSidebar()">
+          <fa-icon [icon]="faBars"></fa-icon>
+        </button>
         <div class="flex items-center justify-center overflow-hidden bg-[#3564FD]/[15%] rounded-full w-11 h-11">
           <ng-container *ngIf="user.img; else noUserImg">
             <img src="{{user.img}}" alt="Profile user image" class="object-cover w-full h-full">
