@@ -1,38 +1,40 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faPlus, faMagnifyingGlass, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { StringInitialPipe } from 'src/app/pipes/string-initial.pipe';
-import { TradeFormComponent } from './components/trade-form/trade-form.component';
+import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { TradeService } from 'src/app/services/trade.service';
 
-
 @Component({
-  selector: 'app-trade',
-  templateUrl: './trade.component.html',
-  styleUrls: ['./trade.component.css'],
+  selector: 'app-trade-form',
+  templateUrl: './trade-form.component.html',
+  styleUrls: ['./trade-form.component.css'],
   standalone: true,
   imports: [
     CommonModule,
-    FontAwesomeModule,
-    StringInitialPipe,
-    TradeFormComponent
-  ],
-  host: { 'class': 'flex flex-grow' }
+    ReactiveFormsModule,
+    FontAwesomeModule
+  ]
 })
-export class TradeComponent implements OnInit, OnDestroy {
+export class TradeFormComponent implements OnInit {
+
+  faCircleCheck = faCircleCheck;
 
   tradeService = inject(TradeService);
-
-  faPlus = faPlus;
-  faMagnifyingGlass = faMagnifyingGlass;
-  faHeart = faHeart;
-  faTrash = faTrash;
+  formBuilder= inject(FormBuilder);
 
   formStep: number = 0;
 
-  tradeForm: boolean = false;
+  tradeFinished: boolean = false;
+
+  tradeForm: FormGroup = new FormGroup({});
+
+  destiny: any = {
+    name: 'Carlos',
+    lastname: 'Peralta',
+    cvu: 22045687567,
+    alias: 'carlos.uala.623'
+  };
 
   user = {
     name: 'Federico',
@@ -85,6 +87,13 @@ export class TradeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.tradeForm = this.formBuilder.group(
+      {
+        cvuOrAlias: ['', Validators.required],
+        mount: ['', [Validators.required, Validators.min(1), Validators.max(this.user.balance)]],
+        motive: ['', Validators.required]
+      }
+    )
     this.tradeService.getFormStep().subscribe({
       next: (res) => {
         this.formStep = res;
@@ -92,16 +101,18 @@ export class TradeComponent implements OnInit, OnDestroy {
     });
   }
 
-  showTradeForm() {
-    this.tradeForm = true;
+  increaseStep() {
+    this.tradeService.setFormStep(this.formStep + 1);
   }
 
-  setFormStep(value: number) {
-    this.tradeService.setFormStep(value);
+  refresh() {
+    location.reload();
   }
 
-  ngOnDestroy(): void {
-    this.tradeService.setFormStep(0);
+  submitTrade() {
+    this.increaseStep();
+    this.tradeService.submitTrade(this.tradeForm.getRawValue());
+    this.tradeFinished = true;
   }
 
 }

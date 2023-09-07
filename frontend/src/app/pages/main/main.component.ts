@@ -1,20 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {
-  faHouse,
-  faDollarSign,
-  faArrowRightFromBracket,
-  faArrowRightArrowLeft,
-  faPlus,
-  faArrowTrendUp,
-  faCoins,
-  faTags,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  faBell,
-  faCircleQuestion,
-  faCreditCard,
-  faThumbsUp,
-} from '@fortawesome/free-regular-svg-icons';
+import { faHouse, faDollarSign, faArrowRightFromBracket, faArrowRightArrowLeft, faPlus, faArrowTrendUp, faCoins, faTags, faXmark, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faCircleQuestion, faCreditCard, faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StringInitialPipe } from 'src/app/pipes/string-initial.pipe';
 import { Router, RouterModule } from '@angular/router';
@@ -42,7 +28,9 @@ export class MainComponent implements OnInit {
   faThumbsUp = faThumbsUp;
   faTags = faTags;
   faCircleQuestion = faCircleQuestion;
-  public user!: any;
+  faXmark = faXmark;
+  faBars = faBars;
+  public user!:any;
 
   private authService = inject(AuthService);
   router = inject(Router);
@@ -59,4 +47,17 @@ export class MainComponent implements OnInit {
     localStorage.removeItem('token');
     location.reload();
   }
+
+  showSidebar() {
+    let sidebar = document.getElementById('sidebar');
+    // @ts-ignore
+    sidebar?.showModal();
+  }
+
+  closeSidebar() {
+    let sidebar = document.getElementById('sidebar');
+    // @ts-ignore
+    sidebar?.close();
+  }
+
 }

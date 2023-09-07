@@ -1,0 +1,12 @@
+#sidebar:modal {
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+#sidebar[open] {
+  display: flex !important;
+}
+
+#sidebar::backdrop {
+  background-color: transparent;
+}
