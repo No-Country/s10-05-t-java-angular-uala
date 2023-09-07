@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faArrowTrendUp, faCircleExclamation, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faClone, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { CommonModule } from '@angular/common';
@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 export class BankingComponent {
 
   @Input() user: any = {}
+
 
   faEye = faEye;
   faEyeSlash = faEyeSlash;

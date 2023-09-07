@@ -5,6 +5,7 @@ import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
 import { PagarComponent } from './pages/pagar/pagar.component';
 import { ServicioComponent } from './pages/pagar/servicio/servicio.component';
+import { HelpComponent } from './pages/help/help.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
     redirectTo: 'main',
     pathMatch: 'full'
   },
-  
+
   {
   path: 'login',
   component: LoginComponent
@@ -54,6 +55,11 @@ const routes: Routes = [
         path: 'pagar',
         loadChildren: () => import('./pages/pagar/pagar.module').then(c => c.PagarModule),
         title: 'Pagos y recargas'
+      },
+      {
+        path: 'help',
+        loadComponent: () => import('./pages/help/help.component').then(c => c.HelpComponent),
+        title: 'ayuda'
       }
     ],
   },

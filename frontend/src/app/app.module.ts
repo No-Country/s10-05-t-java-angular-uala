@@ -25,6 +25,7 @@ import { AuthInterceptor } from './services/interceptors/auth.interceptor';
     RegisterComponent,
 
 
+
     // PagarComponent,
     // ServicioComponent,
     // RecargaComponent,
