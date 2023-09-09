@@ -8,6 +8,7 @@ import lombok.*;
 public class UserResponseDto {
       private int idUser;
 	  private String name;
+	  private String apellido;
 	  private String nameUser;
 	  private String email;
 	  private double balance ;
