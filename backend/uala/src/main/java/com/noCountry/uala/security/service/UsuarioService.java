@@ -1,7 +1,8 @@
 package com.noCountry.uala.security.service;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
+
+import com.noCountry.uala.models.dto.request.UserCbuOrAliasRequestDto;
 import com.noCountry.uala.models.entity.Wallet;
 import com.noCountry.uala.repository.WalletRepository;
 import com.noCountry.uala.security.dto.JwtDto;
@@ -14,16 +15,16 @@ import com.noCountry.uala.security.entity.mapper.UserMapper;
 import com.noCountry.uala.security.enums.RolNombre;
 import com.noCountry.uala.security.jwt.JwtProvider;
 import com.noCountry.uala.security.repository.UsuarioRepository;
-import com.noCountry.uala.security.service.RolService;
-import com.noCountry.uala.security.util.GetUserLogged;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -47,8 +48,8 @@ public class UsuarioService {
 	private final JwtProvider jwtProvider;
 	private final UsuarioRepository usuarioRepository;
 	private final UserMapper userMapper;
-
-
+	private final WalletRepository walletRepository;
+    private final static  Logger logger= LoggerFactory.getLogger(UsuarioService.class);
 	public Optional<Usuario> getByUsuario(String nombreUsuario){
 		return usuarioRepository.findByNombreUsuario(nombreUsuario);
 	}
@@ -109,5 +110,29 @@ public class UsuarioService {
 		return responseDto;
 	}
 
+	public  UserResponseDto getUserForCbuOrAlias(UserCbuOrAliasRequestDto dato) {
+
+
+
+		if (  dato.getValor() instanceof  String) {
+			System.out.println(dato.getValor() );
+			Wallet wallet1 = walletRepository.findByAlias(dato.getValor().toString());
+			System.out.println("____________________________>"+wallet1);
+			System.out.println("-------------------------------------------");
+			Usuario usuario = usuarioRepository.findById(wallet1.getId().intValue()).orElseThrow();
+
+			UserResponseDto responseDto = userMapper.EntityToDto(usuario);
+			System.out.println(responseDto);
+			return responseDto;
+		}
+		else{
+			System.out.println(dato.getValor() );
+				Wallet wallet = walletRepository.findByCbu(((Long) dato.getValor()).longValue());
+				System.out.println(wallet);
+				Usuario usuario1 = usuarioRepository.findById(wallet.getId().intValue()).orElseThrow();
+				UserResponseDto responseDto1 = userMapper.EntityToDto(usuario1);
+				return responseDto1;
+			}
+	}
 
 }

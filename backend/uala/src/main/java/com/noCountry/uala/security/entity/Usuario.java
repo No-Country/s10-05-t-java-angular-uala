@@ -12,12 +12,14 @@ public class Usuario {
 
 		//Id de la tabla
 		@Id
-		//Id Auto Increment
+
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int idUsuario;
-		//Decorador para indicar que no puede ser null el campo
+
 		@NotNull
 		private String nombre;
+		@NotNull
+		private String apellido;
 		@NotNull
 		@Column(unique = true)
 		private String nombreUsuario;
@@ -31,13 +33,13 @@ public class Usuario {
 		@JoinColumn(name = "id_wallet")
 		private Wallet wallet;
 
-	public Usuario( String nombre, String nombreUsuario, String email, String password, Wallet wallet) {
+	public Usuario(String nombre, String apellido, String nombreUsuario, String email, String password, Wallet wallet) {
 		this.nombre = nombre;
+		this.apellido = apellido;
 		this.nombreUsuario = nombreUsuario;
 		this.email = email;
 		this.password = password;
 		this.wallet = wallet;
-
 	}
 
 	@NotNull
@@ -61,7 +63,15 @@ public class Usuario {
 			this.wallet = wallet;
 		}
 
-		public int getIdUsuario() {
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public int getIdUsuario() {
 			return idUsuario;
 		}
 

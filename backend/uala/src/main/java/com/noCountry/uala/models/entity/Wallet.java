@@ -35,8 +35,10 @@ public class Wallet {
 		this.balance = balance ;
 		this.cbu= cbu;
 	}
-	public double generatedCbu(){
-		long cbu  = (long) (Math.random()* 5000000 * 30000 * 490000000);
+	public long generatedCbu(){
+		long leftLimit = 1L;
+		long rightLimit = 1000000000000000000L;
+		long cbu = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
 		return cbu;
 	}
 
@@ -48,7 +50,7 @@ public class Wallet {
 		int e = r.nextInt(aliasDef.length);
 		int f = r.nextInt(aliasDef1.length);
 		int g = r.nextInt(aliasDef2.length);
-		String alias = (aliasDef[e]+"."+aliasDef1[f]+"."+aliasDef2[g]);
+		String alias = (aliasDef[e]+"."+aliasDef1[f]+"."+aliasDef2[g]+".uala");
 		return  alias;
 	}
 
@@ -62,4 +64,5 @@ public class Wallet {
 		}
 		return cont;
 	}
+
 }

@@ -10,6 +10,7 @@ public class UserMapper {
 		UserResponseDto responseDto = new UserResponseDto();
         responseDto.setIdUser(usuario.getIdUsuario());
 		responseDto.setName(usuario.getNombre());
+		responseDto.setApellido(usuario.getApellido());
 		responseDto.setNameUser(usuario.getNombreUsuario());
         responseDto.setEmail(usuario.getEmail());
 		responseDto.setAlias(usuario.getWallet().getAlias());
