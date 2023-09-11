@@ -36,7 +36,6 @@ export class LoginComponent {
   onLogin() {
     this.auth.login(this.loginForm.getRawValue()).subscribe({
       next: (res: any) => {
-        console.log(res);
         localStorage.setItem('token', res.token);
         this.router.navigate(['home']);
       },
