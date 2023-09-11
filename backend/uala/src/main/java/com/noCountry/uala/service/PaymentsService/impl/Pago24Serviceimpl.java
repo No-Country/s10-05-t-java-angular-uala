@@ -1,5 +1,6 @@
 package com.noCountry.uala.service.PaymentsService.impl;
 
+import com.noCountry.uala.models.entity.Wallet;
 import com.noCountry.uala.models.entity.payamentsMethod.Pago24;
 import com.noCountry.uala.repository.PaymentsRepository.Pago24Repository;
 import com.noCountry.uala.security.util.GetUserLogged;
@@ -17,12 +18,18 @@ public class Pago24Serviceimpl implements IPayments {
 	@Override
 	public boolean registerPayment(double cash) {
 		Pago24 pago24  = new Pago24();
+		Wallet wallet = getUserLogged.walletOfSession();
+
+
 		if (pago24.calculatePayments(cash))
 		{
 			pago24.setReferenceNumber(numberOfReference());
 			pago24.setCashAmount(cash);
+			pago24Repository.save(pago24);
+			wallet.setBalance(cash + wallet.getBalance());
 			pago24.setWallet(getUserLogged.walletOfSession());
 			pago24.setEntity(PAGO_24.toString());
+
 			pago24Repository.save(pago24);
 			return true;
 		}

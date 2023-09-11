@@ -1,4 +1,5 @@
 package com.noCountry.uala.service.PaymentsService.impl;
+import com.noCountry.uala.models.entity.Wallet;
 import com.noCountry.uala.models.entity.payamentsMethod.PagoFacil;
 import com.noCountry.uala.repository.PaymentsRepository.PagoFacilRepository;
 import com.noCountry.uala.security.util.GetUserLogged;
@@ -15,6 +16,7 @@ public class PagoFacilServiceIpl implements IPayments {
 	@Override
 	public boolean registerPayment(double cash) {
 		PagoFacil pagoFacil = new PagoFacil();
+		Wallet wallet = getUserLogged.walletOfSession();
 		if (pagoFacil.calculatePayments(cash))
 		{
 			pagoFacil.setReferenceNumber(numberOfReference());

@@ -1,4 +1,5 @@
 package com.noCountry.uala.service.PaymentsService.impl;
+import com.noCountry.uala.models.entity.Wallet;
 import com.noCountry.uala.models.entity.payamentsMethod.CobroExpess;
 import com.noCountry.uala.repository.PaymentsRepository.CobroExpessRepository;
 import com.noCountry.uala.security.util.GetUserLogged;
@@ -14,9 +15,11 @@ public class CobroExpressImpl implements IPayments {
 	@Override
 	public boolean registerPayment(double cash) {
 		CobroExpess cobroExpess = new CobroExpess();
+		Wallet wallet = getUserLogged.walletOfSession();
 		if (cobroExpess.calculatePayments(cash)) {
 			cobroExpess.setReferenceNumber(numberOfReference());
 			cobroExpess.setCashAmount(cash);
+			wallet.setBalance(cash + wallet.getBalance());
 			cobroExpess.setWallet(getUserLogged.walletOfSession());
 			cobroExpess.setEntity(COBRO_EXPRESS.toString());
 			cobroExpessRepository.save(cobroExpess);
