@@ -14,7 +14,7 @@ public class UserMapper {
 		responseDto.setNameUser(usuario.getNombreUsuario());
         responseDto.setEmail(usuario.getEmail());
 		responseDto.setAlias(usuario.getWallet().getAlias());
-		responseDto.setBalance(usuario.getWallet().totalList());
+		responseDto.setBalance(usuario.getWallet().getBalance());
 		responseDto.setCBU(usuario.getWallet().getCbu());
 		return responseDto;
 	}

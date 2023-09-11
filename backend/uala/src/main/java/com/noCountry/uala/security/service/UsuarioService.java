@@ -112,8 +112,6 @@ public class UsuarioService {
 
 	public  UserResponseDto getUserForCbuOrAlias(UserCbuOrAliasRequestDto dato) {
 
-
-
 		if (  dato.getValor() instanceof  String) {
 			System.out.println(dato.getValor() );
 			Wallet wallet1 = walletRepository.findByAlias(dato.getValor().toString());

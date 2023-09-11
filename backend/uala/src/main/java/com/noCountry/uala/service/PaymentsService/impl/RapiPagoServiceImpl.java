@@ -1,5 +1,6 @@
 package com.noCountry.uala.service.PaymentsService.impl;
 
+import com.noCountry.uala.models.entity.Wallet;
 import com.noCountry.uala.models.entity.payamentsMethod.RapiPago;
 import com.noCountry.uala.repository.PaymentsRepository.RapiPagoRepository;
 import com.noCountry.uala.security.util.GetUserLogged;
@@ -18,11 +19,13 @@ public class RapiPagoServiceImpl implements IPayments {
 	@Override
 	public boolean registerPayment(double cash) {
 		RapiPago rapiPago = new RapiPago();
+	    Wallet wallet = getUserLogged.walletOfSession();
 		if (rapiPago.calculatePayments(cash))
 		{
 			rapiPago.setReferenceNumber(numberOfReference());
 			rapiPago.setCashAmount(cash);
-			rapiPago.setWallet(getUserLogged.walletOfSession());
+			rapiPago.setWallet(wallet);
+			wallet.setBalance(cash + wallet.getBalance());
 			rapiPago.setEntity(RAPIPAGO.toString());
 			rapiPagoRepository.save(rapiPago);
 			return true;

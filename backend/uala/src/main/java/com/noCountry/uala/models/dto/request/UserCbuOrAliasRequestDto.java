@@ -7,4 +7,6 @@ import lombok.Setter;
 @Setter
 public class UserCbuOrAliasRequestDto {
 	private Object valor;
+
+
 }
