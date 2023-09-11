@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { faHouse, faDollarSign, faArrowRightFromBracket, faArrowRightArrowLeft, faPlus, faArrowTrendUp, faCoins, faTags, faXmark, faBars } from '@fortawesome/free-solid-svg-icons';
 import { faBell, faCircleQuestion, faCreditCard, faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StringInitialPipe } from 'src/app/pipes/string-initial.pipe';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -18,7 +19,10 @@ import { CommonModule } from '@angular/common';
     RouterModule
   ]
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
+
+  router = inject(Router);
+  authService = inject(AuthService);
 
   faHouse = faHouse;
   faDollarSign = faDollarSign;
@@ -35,15 +39,16 @@ export class MainComponent {
   faXmark = faXmark;
   faBars = faBars;
 
-  user = {
-    name: 'Federico',
-    lastname: 'Burgos',
-    balance: 365400,
-    img: ''
-    // img: 'https://www.logiconme.com/assets/img-temp/400x450/img5.jpg'
-  }
+  userInfo: any;
 
-  router = inject(Router);
+  ngOnInit(): void {
+    this.authService.getUserInfo();
+    this.authService.getUserInfoObservable().subscribe({
+      next: (data) => {
+        this.userInfo = data;
+      }
+    });
+  }  
 
   logout() {
     localStorage.removeItem('token');
