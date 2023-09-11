@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 })
 export class BankingComponent {
 
-  @Input() user: any = {}
+  @Input() userInfo: any = {}
 
   faEye = faEye;
   faEyeSlash = faEyeSlash;
@@ -43,6 +43,14 @@ export class BankingComponent {
     let dialog = document.getElementById('alias-dialog');
     // @ts-ignore
     dialog?.close();
+  }
+
+  copyCbu() {
+    navigator.clipboard.writeText(this.userInfo.cbu)
+  }
+
+  copyAlias() {
+    navigator.clipboard.writeText(this.userInfo.alias);
   }
 
 }
