@@ -40,8 +40,8 @@ public class AuthController {
 
 	@GetMapping("/user-cbu-alias")
 	public ResponseEntity<?> getUserToCbuOrAlias(@Valid @RequestBody UserCbuOrAliasRequestDto valor){
-	UserResponseDto responseDto =usuarioService.getUserForCbuOrAlias(valor);
-		return new ResponseEntity(responseDto,HttpStatus.ACCEPTED );
+
+		return new ResponseEntity("",HttpStatus.ACCEPTED );
 	}
 
 
