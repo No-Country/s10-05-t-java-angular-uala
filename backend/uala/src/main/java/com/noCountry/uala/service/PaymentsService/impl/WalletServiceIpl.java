@@ -19,14 +19,16 @@ public class WalletServiceIpl implements IWallet {
 		return wallet.getPaymentsList().stream().toList();
 	}
 
-//	@Override
-//	public void addPayment(Payments payments) {
-//		Wallet wallet = getUserLogged.walletOfSession();
-//		 wallet.setBalance(payments.getCashAmount());
-//		repository.save(wallet);
-//	}
-//
-//	@Override
-//	public void PaymentToList() {
-//	}
+	@Override
+	public void addCashWallet(double cash) {
+		Wallet wallet = getUserLogged.walletOfSession();
+		wallet.setBalance(wallet.getBalance() + cash);
+		repository.save(wallet);
+
+	}
+
+	public void addPayment(Payments payments) {
+
+	}
+
 }
