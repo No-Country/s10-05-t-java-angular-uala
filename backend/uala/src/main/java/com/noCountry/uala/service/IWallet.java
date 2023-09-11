@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface IWallet {
 	List<Payments> paymentsList();
+	void addCashWallet(double cash);
 
 }
