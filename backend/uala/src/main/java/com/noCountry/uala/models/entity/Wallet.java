@@ -1,7 +1,7 @@
 package com.noCountry.uala.models.entity;
 
 import com.noCountry.uala.models.entity.payamentsMethod.Payments;
-
+import com.noCountry.uala.security.entity.Usuario;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,9 +17,7 @@ import static com.fasterxml.jackson.databind.cfg.CoercionInputShape.Array;
 @Getter
 @Setter
 @Entity
-@Table(name = "Wallet")
 public class Wallet {
-
 	@Id
 	@Column(name = "id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +27,7 @@ public class Wallet {
 	private long cbu;
 	@OneToMany(mappedBy = "wallet",cascade = CascadeType.ALL,orphanRemoval =true)
 	private  List<Payments> paymentsList = new ArrayList<>();
+
 
 
 	public Wallet(double balance, long cbu ) {
@@ -57,6 +56,9 @@ public class Wallet {
 	 public  void listPayment(Payments payments){
 		paymentsList.add(payments);
 	}
+
+
+
 	public  double totalList(){
 		double cont=0;
 		for (Payments payments: paymentsList) {
