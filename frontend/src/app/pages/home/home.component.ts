@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { BankingComponent } from './components/banking/banking.component';
 import { MovementsComponent } from './components/movements/movements.component';
 import { ExpensesComponent } from './components/expenses/expenses.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,14 +17,15 @@ import { AuthService } from 'src/app/services/auth.service';
   ],
   host: {'class': 'flex flex-grow'}
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
 
   authService = inject(AuthService);
+  userInfoSubscription: Subscription | undefined;
 
   userInfo: any;
 
   ngOnInit(): void {
-    this.authService.getUserInfoObservable().subscribe({
+    this.userInfoSubscription = this.authService.getUserInfoObservable().subscribe({
       next: (data) => {
         this.userInfo = data;
       }
@@ -60,5 +62,9 @@ export class HomeComponent {
       value: 1200
     }
   ];
+
+  ngOnDestroy(): void {
+    this.userInfoSubscription?.unsubscribe();
+  }
 
 }

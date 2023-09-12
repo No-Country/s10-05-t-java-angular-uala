@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { faHouse, faDollarSign, faArrowRightFromBracket, faArrowRightArrowLeft, faPlus, faArrowTrendUp, faCoins, faTags, faXmark, faBars } from '@fortawesome/free-solid-svg-icons';
 import { faBell, faCircleQuestion, faCreditCard, faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -6,6 +6,7 @@ import { StringInitialPipe } from 'src/app/pipes/string-initial.pipe';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -19,7 +20,7 @@ import { AuthService } from 'src/app/services/auth.service';
     RouterModule
   ]
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
   router = inject(Router);
   authService = inject(AuthService);
@@ -40,10 +41,11 @@ export class MainComponent implements OnInit {
   faBars = faBars;
 
   userInfo: any;
+  userInfoSubscription: Subscription | undefined;
 
   ngOnInit(): void {
     this.authService.getUserInfo();
-    this.authService.getUserInfoObservable().subscribe({
+    this.userInfoSubscription = this.authService.getUserInfoObservable().subscribe({
       next: (data) => {
         this.userInfo = data;
       }
@@ -65,6 +67,10 @@ export class MainComponent implements OnInit {
     let sidebar = document.getElementById('sidebar');
     // @ts-ignore
     sidebar?.close();
+  }
+
+  ngOnDestroy(): void {
+    this.userInfoSubscription?.unsubscribe();
   }
 
 }
