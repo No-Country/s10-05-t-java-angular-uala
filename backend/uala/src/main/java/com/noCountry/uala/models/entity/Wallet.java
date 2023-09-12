@@ -1,5 +1,6 @@
 package com.noCountry.uala.models.entity;
 
+import com.noCountry.uala.models.entity.ServicePaymentModel.ServicePaymentModel;
 import com.noCountry.uala.models.entity.payamentsMethod.Payments;
 
 import lombok.*;
@@ -25,6 +26,8 @@ public class Wallet {
 	private long cbu;
 	@OneToMany(mappedBy = "wallet",cascade = CascadeType.ALL,orphanRemoval =true)
 	private  List<Payments> paymentsList = new ArrayList<>();
+	@OneToMany(mappedBy = "walletPayment",cascade = CascadeType.ALL,orphanRemoval =true)
+	private  List<ServicePaymentModel> servicePaymentsList = new ArrayList<>();
 
 
 	public Wallet(double balance, long cbu ) {

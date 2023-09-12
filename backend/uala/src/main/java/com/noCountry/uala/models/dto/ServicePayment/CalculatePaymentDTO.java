@@ -13,8 +13,8 @@ import java.text.DecimalFormat;
 @ToString
 @NoArgsConstructor
 public class CalculatePaymentDTO {
-    private String servicetype;
-    private String noservice;
+    private String serviceType;
+    private String noService;
     private String serviceOwner;
     private Date expirationDate;
     private Date issueDate;
