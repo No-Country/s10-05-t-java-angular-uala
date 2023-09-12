@@ -15,6 +15,9 @@ import com.noCountry.uala.service.PaymentsService.IPayments;
 import com.noCountry.uala.service.PaymentsService.ITransferToThirdParties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 import static com.noCountry.uala.enums.PaymentMethods.PAGO_FACIL;
 
 @Service
@@ -25,7 +28,7 @@ public class TransferImpl implements IPayments, ITransferToThirdParties {
 	private final UsuarioRepository usuarioRepository;
 	private final UserMapper userMapper;
 	private final WalletRepository walletRepository;
-	private final UsuarioService usuarioService;
+
 
 	@Override
 	public boolean registerPayment(double cash) {
@@ -52,14 +55,23 @@ public class TransferImpl implements IPayments, ITransferToThirdParties {
 	@Override
 	public boolean sendTransfer(TranferMethodDto dato) {
 
+
 		Wallet wallet1 = walletRepository.findByCbu(((Long) dato.getValor()).longValue());
+		Usuario usuario = usuarioRepository.findById(wallet1.getId().intValue()).orElseThrow();
+
+
+
 		Wallet wallet = getUserLogged.walletOfSession();
+		Usuario usuarioActual = usuarioRepository.findById(wallet.getId().intValue()).orElseThrow();
 		if (wallet.getBalance()> dato.getCashAmount())
 		{
 			wallet.setBalance(wallet.getBalance() - dato.getCashAmount());
-			walletRepository.save(wallet);
 			wallet1.setBalance( dato.getCashAmount() + wallet1.getBalance());
+            usuarioActual.getContactos().add(usuario);
+			usuarioRepository.save(usuarioActual);
 			walletRepository.save(wallet1);
+            walletRepository.save(wallet);
+
 		return true;
 		}
 		return false;
@@ -82,4 +94,8 @@ public class TransferImpl implements IPayments, ITransferToThirdParties {
 			return responseDto1;
 		}
 	}
+
+
+
+
 }
