@@ -24,6 +24,12 @@ export class AuthService {
     this.http.get('https://uala-no-country.onrender.com/v1/api/auth/infoUser', options).subscribe({
       next: (res) => {
         this.userInfo.next(res);
+      },
+      error: (err) => {
+        if (err.status == 400) {
+          localStorage.clear();
+          location.reload();
+        }
       }
     });
   }
