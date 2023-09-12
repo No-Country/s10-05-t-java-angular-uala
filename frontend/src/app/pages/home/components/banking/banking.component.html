@@ -30,6 +30,7 @@
         <div>
           <p class="text-lg">CVU</p>
           <p id="cbu" class="font-medium text-[#3A3A3A]">{{userInfo.cbu}}</p>
+          <p *ngIf="cbuCopyAlert" class="block animate-pulse text-[#ff5874] text-sm font-medium">CVU copiado al portapapeles.</p>
         </div>
         <button class="text" (click)="copyCbu()">
           <span class="sr-only">Copy CVU</span>
@@ -40,6 +41,7 @@
         <div>
           <p class="text-lg">Alias</p>
           <p class="font-medium text-[#3A3A3A]">{{userInfo.alias}}</p>
+          <p *ngIf="aliasCopyAlert" class="block animate-pulse text-[#ff5874] text-sm font-medium">Alias copiado al portapapeles.</p>
         </div>
         <button class="text" (click)="copyAlias()">
           <span class="sr-only">Copy Alias</span>

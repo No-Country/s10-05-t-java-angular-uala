@@ -28,6 +28,8 @@ export class BankingComponent {
   faCircleExclamation = faCircleExclamation;
 
   balanceVisibility: boolean = false;
+  cbuCopyAlert: boolean = false;
+  aliasCopyAlert: boolean = false;
 
   toggleBalanceVisibility() {
     this.balanceVisibility = !this.balanceVisibility;
@@ -46,11 +48,19 @@ export class BankingComponent {
   }
 
   copyCbu() {
-    navigator.clipboard.writeText(this.userInfo.cbu)
+    this.cbuCopyAlert = true;
+    navigator.clipboard.writeText(this.userInfo.cbu);
+    setTimeout(() => {
+      this.cbuCopyAlert = false;
+    }, 5000);
   }
 
   copyAlias() {
+    this.aliasCopyAlert = true;
     navigator.clipboard.writeText(this.userInfo.alias);
+    setTimeout(() => {
+      this.aliasCopyAlert = false;
+    }, 5000);
   }
 
 }
