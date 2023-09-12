@@ -1,1 +1,8 @@
-com/noCountry/uala/Config/CorsConfig.class
+com/noCountry/uala/repository/PaymentsRepository/TransferRepository.class
+com/noCountry/uala/service/PaymentsService/impl/TransferImpl.class
+com/noCountry/uala/service/PaymentsService/ITransferToThirdParties.class
+com/noCountry/uala/Controller/TranferController.class
+com/noCountry/uala/models/dto/request/UserCbuOrAliasRequestDto.class
+com/noCountry/uala/models/dto/request/TranferMethodDto.class
+com/noCountry/uala/models/entity/payamentsMethod/Transfer$TransferBuilder.class
+com/noCountry/uala/models/entity/payamentsMethod/Transfer.class
