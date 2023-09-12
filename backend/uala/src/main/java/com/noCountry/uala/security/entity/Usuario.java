@@ -1,13 +1,17 @@
 package com.noCountry.uala.security.entity;
 
 import com.noCountry.uala.models.entity.Wallet;
+import lombok.AllArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
+@AllArgsConstructor
 public class Usuario {
 
 		//Id de la tabla
@@ -33,6 +37,18 @@ public class Usuario {
 		@JoinColumn(name = "id_wallet")
 		private Wallet wallet;
 
+	@ManyToMany
+	@JoinTable(
+			name = "contactos",
+			joinColumns = @JoinColumn(name = "usuario_id"),
+			inverseJoinColumns = @JoinColumn(name = "contacto_id")
+	)
+	private List<Usuario> contactos = new ArrayList<>();
+
+
+
+
+
 	public Usuario(String nombre, String apellido, String nombreUsuario, String email, String password, Wallet wallet) {
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -51,7 +67,15 @@ public class Usuario {
 		public Usuario() {
 		}
 
-		//Constuctor sin Id ni Roles
+	public List<Usuario> getContactos() {
+		return contactos;
+	}
+
+	public void setContactos(List<Usuario> contactos) {
+		this.contactos = contactos;
+	}
+
+	//Constuctor sin Id ni Roles
 		public Usuario(@NotNull String nombre,
 					   @NotNull String nombreUsuario,
 					   @NotNull String email,
@@ -134,5 +158,7 @@ public class Usuario {
 	public void setWallet(Wallet wallet) {
 		this.wallet = wallet;
 	}
+
+
 }
 

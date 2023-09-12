@@ -14,6 +14,4 @@ public class UserResponseDto {
 	  private double balance ;
 	  private long CBU;
 	  private String alias;
-
-
 }
