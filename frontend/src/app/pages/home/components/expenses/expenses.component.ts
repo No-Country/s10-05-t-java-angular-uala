@@ -17,9 +17,10 @@ import { faBagShopping, faCar, faCartShopping, faDeleteLeft, faFileLines, faPers
     TotalExpensesPipe
   ]
 })
-export class ExpensesComponent {
+export class ExpensesComponent  {
 
   @Input() data: any;
+
 
   faFileLines = faFileLines;
   faBagShopping = faBagShopping;

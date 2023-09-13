@@ -31,4 +31,8 @@ export class PagosServiceService {
     return this.http.post<ServicioInter>(`${URL_API}confirm/service`, servicio, {observe: 'response'});
   }
 
+  findbalance(){
+    return this.http.get<number>(`${URL_API}calculate/balance`)
+  }
+
 }

@@ -3,6 +3,7 @@ import { BankingComponent } from './components/banking/banking.component';
 import { MovementsComponent } from './components/movements/movements.component';
 import { ExpensesComponent } from './components/expenses/expenses.component';
 import { AuthService } from '../../services/auth.service';
+import { PagosServiceService } from 'src/app/services/pagos-service.service';
 
 @Component({
   selector: 'app-home',
@@ -20,15 +21,27 @@ export class HomeComponent implements OnInit {
   public name!:string;
   public balance !:number;
   public user:any;
-  private authService=inject(AuthService);
+  public balanceServicios?:number;
+  public authService=inject(AuthService);
+
+  constructor(private serviciosPago : PagosServiceService){
+
+  }
 
   ngOnInit(): void {
+    this.serviciosPago.findbalance().subscribe(data=>{
+      this.balanceServicios=data;
+    })
+    
     this.authService.getInfoUser().subscribe((userInfo:any)=>{
       this.name = userInfo.name;
-
       this.balance = userInfo.balance;
       console.log(userInfo.cbu);
-
+      this.serviciosPago.findbalance().subscribe(data=>{
+        this.balanceServicios=data
+        console.log(this.balanceServicios);
+        
+      })
       this.user = {
         name:this.name,
         lastname: 'Burgos',
@@ -37,7 +50,7 @@ export class HomeComponent implements OnInit {
         expenses: [
           {
             name: 'Servicios y débitos automáticos',
-            value: 7000
+            value: this.balanceServicios
           },
           {
             name: 'Compras',

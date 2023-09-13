@@ -5,10 +5,7 @@ import org.apache.coyote.http11.filters.IdentityOutputFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/api/service/payment")
@@ -22,8 +19,12 @@ public class ServicePaymentController {
 
     @PostMapping("/confirm/service")
     public ResponseEntity<?> confrmiPaymentService(@RequestBody CalculatePaymentDTO paymentDTO){
-        //return paymentService.savePaymentService(paymentDTO);
-        System.out.println(paymentDTO.toString());
-        return new ResponseEntity<>(paymentDTO, HttpStatus.OK);
+        return paymentService.savePaymentService(paymentDTO);
+
+    }
+
+    @GetMapping("/calculate/balance")
+    public int totalBalance(){
+        return paymentService.balancePayment();
     }
 }

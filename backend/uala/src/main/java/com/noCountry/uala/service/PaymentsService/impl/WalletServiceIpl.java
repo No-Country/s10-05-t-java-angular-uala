@@ -36,8 +36,15 @@ public class WalletServiceIpl implements IWallet {
 		Wallet wallet = getUserLogged.walletOfSession();
 		wallet.setBalance(wallet.getBalance() + cash);
 		repository.save(wallet);
-
 	}
+
+	@Override
+	public void discountCash(double cash) {
+		Wallet wallet = getUserLogged.walletOfSession();
+		wallet.setBalance(wallet.getBalance() - cash);
+		repository.save(wallet);
+	}
+
 	public List<UserResponseDto> contactList() {
 		Wallet wallet = getUserLogged.walletOfSession();
 		Usuario usuario = usuarioRepository.findById(wallet.getId().intValue()).orElseThrow();
