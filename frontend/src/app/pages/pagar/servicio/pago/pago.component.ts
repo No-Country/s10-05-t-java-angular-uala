@@ -35,7 +35,6 @@ export class PagoComponent implements OnInit{
   }
   confirmar(){
       this.servicio.saveServicePayment(this.servicioInter).subscribe(response=>{
-        console.log(response.status);
         if (response.status==200) {
           this.router.navigateByUrl(`main/pagar/confirmacion`)
         }
