@@ -22,8 +22,8 @@
 -  David Moreno Castilla - Frontend
 -  Marcos Paz Goncheff - Backend
 -  Marvin Archila - Backend
--  Dante Fontana - QA Tester
--  Ricardo Thalhuen Moraga Cortez - QA Tester
+-  Dante Fontana - Tester
+-  Ricardo Thalhuen Moraga Cortez - Tester
 
 ## Live Site
 [https://s10-05-t-java-angular-uala.web.app](https://s10-05-t-java-angular-uala.web.app)
