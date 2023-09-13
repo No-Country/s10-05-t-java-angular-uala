@@ -1,7 +1,9 @@
 package com.noCountry.uala.Controller;
 import com.noCountry.uala.models.dto.ServicePayment.CalculatePaymentDTO;
 import com.noCountry.uala.service.ServicePaymentService.CalculatePaymentService;
+import org.apache.coyote.http11.filters.IdentityOutputFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,8 @@ public class ServicePaymentController {
 
     @PostMapping("/confirm/service")
     public ResponseEntity<?> confrmiPaymentService(@RequestBody CalculatePaymentDTO paymentDTO){
-        return paymentService.savePaymentService(paymentDTO);
+        //return paymentService.savePaymentService(paymentDTO);
+        System.out.println(paymentDTO.toString());
+        return new ResponseEntity<>(paymentDTO, HttpStatus.OK);
     }
 }
