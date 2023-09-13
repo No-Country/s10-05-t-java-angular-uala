@@ -1,0 +1,9 @@
+.boton-continue{
+    position: relative;
+    left: 300px;
+}
+
+.boton-volver{
+    position: relative;
+    right: 100px;
+}

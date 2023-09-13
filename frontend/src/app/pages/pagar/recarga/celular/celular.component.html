@@ -1,0 +1,30 @@
+<br>
+          <div class="mt-5">
+          <p class="font-semibold text-[#3A3A3A] text-xl mb-5">
+            ¿A qué número quieres recargar?
+          </p>
+          <div class="grid grid-cols-2 lg:gap-x-14 px-4">
+            <div class="col-span-1 my-5">
+                <input type="number" placeholder="Numero de Celular" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none light:text-gray-400 light:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+              <br>
+              <div class="boton-continue">
+                  <button
+                  routerLink="/main/pagar/exitoso"
+                  class="bg-[#3564FD] mt-5 text-white justify-center justify-between it lg:w-64 font-medium py-2 px-4 border border-[#3564FD] rounded-full duration-200 float-right"
+                  >
+                  Continuar
+                </button>
+            </div>
+            <div class="boton-volver">
+                <button
+                routerLink="/main/pagar/recarga"
+                class="bg-[#3564FD] mt-5 text-white justify-center justify-between it lg:w-64 font-medium py-2 px-4 border border-[#3564FD] rounded-full duration-200 float-right"
+                >
+                Volver
+            </button>
+        </div>
+            </div>
+          </div>
+        </div>
+          <router-outlet></router-outlet>
+  

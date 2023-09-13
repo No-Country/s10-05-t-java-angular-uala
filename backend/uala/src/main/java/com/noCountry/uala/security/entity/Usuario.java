@@ -2,7 +2,6 @@ package com.noCountry.uala.security.entity;
 
 import com.noCountry.uala.models.entity.Wallet;
 import lombok.AllArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @AllArgsConstructor
+
 public class Usuario {
 
 		//Id de la tabla
@@ -37,6 +37,7 @@ public class Usuario {
 		@JoinColumn(name = "id_wallet")
 		private Wallet wallet;
 
+
 	@ManyToMany
 	@JoinTable(
 			name = "contactos",
@@ -56,6 +57,8 @@ public class Usuario {
 		this.email = email;
 		this.password = password;
 		this.wallet = wallet;
+
+
 	}
 
 	@NotNull
@@ -67,6 +70,7 @@ public class Usuario {
 		public Usuario() {
 		}
 
+
 	public List<Usuario> getContactos() {
 		return contactos;
 	}
@@ -75,7 +79,7 @@ public class Usuario {
 		this.contactos = contactos;
 	}
 
-	//Constuctor sin Id ni Roles
+
 		public Usuario(@NotNull String nombre,
 					   @NotNull String nombreUsuario,
 					   @NotNull String email,
@@ -96,6 +100,7 @@ public class Usuario {
 	}
 
 	public int getIdUsuario() {
+
 			return idUsuario;
 		}
 

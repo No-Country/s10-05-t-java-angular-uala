@@ -1,0 +1,36 @@
+<br>
+<div class="mt-5" >
+  <p class="font-semibold text-[#3A3A3A] text-xl mb-5">
+    Encuentra el servicio que deseas pagar
+  </p>
+  <div class="flex gap-1 text-[#818181] text-base">
+    <p class="font-normal">
+      Búscalo a través del nombre de la empresa del servicio que deseas pagar
+    </p>
+  </div>
+  <div class="grid grid-cols-2 lg:gap-x-14 px-4">
+    <div class="col-span-1 my-5">
+      <label for="noCuenta"
+        class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent appearance-none light:text-gray-400 light:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">Servicio</label>
+      <select id="underline_select" [(ngModel)]="seleccionado"
+        class="block py-2.5 px-0 w-full cursor-pointer text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none light:text-gray-400 light:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+        <option [value]="item" *ngFor="let item of opciones">{{item}}</option>
+        
+      </select>
+    </div>
+    <div class="col-span-1 my-5">
+
+      <label for="noCuenta"
+        class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent appearance-none light:text-gray-400 light:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">Numero
+        de Servicio</label>
+      <input type="text" id="noCuenta" [(ngModel)]="noServicio"
+        class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none light:text-gray-400 light:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+      <br>
+    </div>
+  </div>
+  
+</div>
+<div>
+  <input type="button"  (click)="buscar()" value="Continuar" class="text-white bg-[#3564FD] mt-5 justify-center it lg:w-64 font-medium py-2 px-4 border border-[#3564FD] rounded-full duration-200 float-right">
+</div>
+<router-outlet></router-outlet>

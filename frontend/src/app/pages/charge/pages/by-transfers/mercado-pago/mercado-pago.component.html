@@ -1,0 +1,46 @@
+<div class="mt-5">
+  <p class="font-semibold text-[#3A3A3A] text-xl mb-5">
+    ¿Con qué cuenta quieres recargar?
+  </p>
+  <div class="flex gap-1 text-[#818181] text-base">
+    <p class="font-normal">
+      Ingresa los datos de la cuenta desde la que vas a transferirte
+    </p>
+  </div>
+  <div class="grid grid-cols-2 lg:gap-x-14 px-4">
+    <div class="col-span-1 my-5">
+      <select
+        id="underline_select"
+        class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none light:text-gray-400 light:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+      >
+        <option selected>Entidad</option>
+        <option value="1">Bancolombia</option>
+        <option value="2">Davivienda</option>
+        <option value="3">BBVA</option>
+        <option value="4">Banco Santander</option>
+      </select>
+      <button
+        routerLink="/main/charge/"
+        class="mt-5 text-[#3564FD] justify-center it lg:w-64 md:w-42 font-medium py-2 px-4 border border-[#3564FD] rounded-full hover:text-[#022A9B] hover:border-[#022A9B] duration-200"
+      >
+        Volver
+      </button>
+    </div>
+    <div class="col-span-1 my-5">
+      <select
+        id="underline_select"
+        class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none light:text-gray-400 light:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+      >
+        <option selected>Tipo de persona</option>
+        <option value="1">Persona Natural</option>
+        <option value="2">Persona Jurídica</option>
+      </select>
+      <button
+        routerLink="/main/charge/confirm"
+        class="bg-[#3564FD] mt-5 text-white justify-center it lg:w-64 font-medium py-2 px-4 border border-[#3564FD] rounded-full duration-200 float-right"
+      >
+        Continuar
+      </button>
+    </div>
+  </div>
+</div>

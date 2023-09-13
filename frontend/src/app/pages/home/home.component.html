@@ -1,0 +1,14 @@
+<div class="flex-grow px-10 bg-[#F3F4F6] py-7">
+  <div class="grid w-full grid-cols-1 xl:grid-cols-2 gap-11">
+    
+    <div class="flex flex-col gap-11">      
+      <app-banking [user]="user"></app-banking>
+      <app-movements></app-movements>      
+    </div>
+
+    <div>
+      <app-expenses [data]="user.expenses"></app-expenses>
+    </div>
+
+  </div>
+</div>

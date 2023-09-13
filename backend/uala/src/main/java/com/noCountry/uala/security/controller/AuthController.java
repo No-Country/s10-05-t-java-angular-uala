@@ -1,10 +1,12 @@
 package com.noCountry.uala.security.controller;
 
+
 import com.noCountry.uala.models.dto.request.UserCbuOrAliasRequestDto;
 import com.noCountry.uala.security.dto.JwtDto;
 import com.noCountry.uala.security.dto.LoginUsuario;
 import com.noCountry.uala.security.dto.NuevoUsuario;
 import com.noCountry.uala.security.dto.UserResponseDto;
+
 import com.noCountry.uala.security.entity.Usuario;
 import com.noCountry.uala.security.service.UsuarioService;
 import com.noCountry.uala.security.util.GetUserLogged;
@@ -43,8 +45,5 @@ public class AuthController {
 
 		return new ResponseEntity("",HttpStatus.ACCEPTED );
 	}
-
-
-
 
 }

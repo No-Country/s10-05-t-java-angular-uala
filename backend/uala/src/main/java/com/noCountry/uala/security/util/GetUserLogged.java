@@ -21,4 +21,8 @@ public class GetUserLogged {
 		Wallet wallet = walletRepository.findById((long) usuario.getIdUsuario()).orElseThrow();
 		return wallet;
 	}
+
+	public String userName(){
+		return usuarioService.getUserLogged();
+	}
 }
