@@ -36,7 +36,7 @@ public class Wallet {
 	}
 	public long generatedCbu(){
 		long leftLimit = 1L;
-		long rightLimit = 1000000000000000000L;
+		long rightLimit = 1000000000000L;
 		long cbu = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
 		return cbu;
 	}

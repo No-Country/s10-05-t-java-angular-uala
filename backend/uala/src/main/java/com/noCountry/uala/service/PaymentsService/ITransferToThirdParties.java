@@ -11,7 +11,7 @@ public interface ITransferToThirdParties {
 	public abstract boolean sendTransfer(TranferMethodDto tranferMethodDto);
 	public abstract UserResponseDto  findToCbuOrAlias(UserCbuOrAliasRequestDto dato);
 
-
+	public abstract UserResponseDto  findToC(Object d );
 
 
 

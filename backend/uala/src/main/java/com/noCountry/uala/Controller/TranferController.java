@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+
+
 @RestController
 @RequestMapping("/v1/api/transfer")
 @RequiredArgsConstructor
@@ -23,6 +25,22 @@ public final TransferImpl transferImpl;
 	public ResponseEntity<?> findCbuOrAlias(@RequestBody UserCbuOrAliasRequestDto data){
 		return new ResponseEntity<>(transferImpl.findToCbuOrAlias(data), HttpStatus.ACCEPTED );
 	}
+	@GetMapping("/serch-cbu-alias/{parametro}")
+	public ResponseEntity<?> CbuOrAlias(@PathVariable Object parametro) {
 
+
+
+		 if (parametro instanceof Long) {
+			Long parametroInt = (Long) parametro;
+			return new ResponseEntity(transferImpl.findTocbu(parametroInt), HttpStatus.ACCEPTED);
+		}
+		if (parametro instanceof String) {
+			String parametroString = (String) parametro;
+			return new ResponseEntity(transferImpl.findToAlias(parametroString), HttpStatus.ACCEPTED);
+		}
+		else {
+			return ResponseEntity.badRequest().body("El parámetro no es ni String ni int");
+		}
+	}
 
 }

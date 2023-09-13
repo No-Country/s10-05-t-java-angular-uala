@@ -95,7 +95,47 @@ public class TransferImpl implements IPayments, ITransferToThirdParties {
 		}
 	}
 
+	@Override
+	public UserResponseDto findToC(Object dato) {
+		System.out.println(dato);
+		
+		if (  dato.toString() instanceof  String) {
+			Wallet wallet1 = walletRepository.findByAlias(dato.toString());
+			Usuario usuario = usuarioRepository.findById(wallet1.getId().intValue()).orElseThrow();
+			UserResponseDto responseDto = userMapper.EntityToDto(usuario);
+			System.out.println(responseDto);
+			return responseDto;
+		}
+		else if ( dato instanceof  Long){
+			
+			Wallet wallet = walletRepository.findByCbu(((Long) dato).longValue());
+			Usuario usuario1 = usuarioRepository.findById(wallet.getId().intValue()).orElseThrow();
+			UserResponseDto responseDto1 = userMapper.EntityToDto(usuario1);
+			return responseDto1;
+		}
+		else{
+			throw new RuntimeException("NO ENCONTRADO !");
+		}
+	}
+
+	public UserResponseDto findTocbu(Long dato) {
+		Wallet wallet = walletRepository.findByCbu(((Long) dato).longValue());
+		Usuario usuario1 = usuarioRepository.findById(wallet.getId().intValue()).orElseThrow();
+		UserResponseDto responseDto1 = userMapper.EntityToDto(usuario1);
+		return responseDto1;
+	}
 
 
-
+	public UserResponseDto findToAlias(String dato) {
+		System.out.println(dato);
+		if (dato instanceof String) {
+			Wallet wallet1 = walletRepository.findByAlias(dato.toString());
+			Usuario usuario = usuarioRepository.findById(wallet1.getId().intValue()).orElseThrow();
+			UserResponseDto responseDto = userMapper.EntityToDto(usuario);
+			System.out.println(responseDto);
+			return responseDto;
+		} else {
+			throw new RuntimeException("NO ENCONTRADO !");
+		}
+	}
 }

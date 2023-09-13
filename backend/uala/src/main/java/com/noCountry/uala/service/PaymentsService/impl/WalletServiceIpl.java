@@ -41,11 +41,6 @@ public class WalletServiceIpl implements IWallet {
 	public List<UserResponseDto> contactList() {
 		Wallet wallet = getUserLogged.walletOfSession();
 		Usuario usuario = usuarioRepository.findById(wallet.getId().intValue()).orElseThrow();
-
-//		customerRepository.findAll().stream()
-//				.map(customer -> customerMapper.fromEntityToDto(customer))
-//				.collect(Collectors.toList());
-//	}
 		Set<Usuario> noR = new HashSet<>(usuario.getContactos());
 		List<Usuario> listaSinDuplicados = new ArrayList<>(noR);
 
