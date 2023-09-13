@@ -23,7 +23,7 @@ export class LoginComponent {
   isUserLogged: boolean | undefined;
 
   loginForm = this.formBuilder.nonNullable.group({
-    nombreUsuario: ['Marcos192000', [Validators.required]],
+    nombreUsuario: ['James_Gosling', [Validators.required]],
     password: ['123456', [Validators.required]],
   });
 
