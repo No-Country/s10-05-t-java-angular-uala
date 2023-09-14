@@ -21,6 +21,7 @@ public class CalculatePaymentDTO {
     private String invoiceSeries;
     private float balance;
     private String descriptionService;
+    private Date paymentDate;
 
     public void calculateInvoice(String User){
         calculateDates();
