@@ -1,92 +1,112 @@
 <form [formGroup]="tradeForm">
 
+  <!-- TODO ESTO ES UN ASCO PERO BUENO ES LO QUE HAY -->
+
   <!-- si no existe el contacto se lo busca por cvu o alias -->
-  <div *ngIf="formStep == 1 && !tradeFinished" class="flex flex-col max-w-[23.125rem] w-full mx-auto gap-14">
-    <label for="cvu-alias" class="flex flex-col gap-3 text-[#3A3A3A]">
-      Ingresá el CVU o alias
-      <input formControlName="cvuOrAlias" type="text" id="cvu-alias" class="bg-transparent outline-none px-2 py-3 border-b border-[#818181] text-[#818181]" placeholder="CVU o alias">
-    </label>
+  <div *ngIf="formStep == 1 && !tradeFinished && !somethingWrong" class="flex flex-col max-w-[23.125rem] w-full mx-auto gap-14 px-3 pb-10">
+    <div>
+      <label for="alias" class="flex text-sm sm:text-base flex-col gap-3 text-[#3A3A3A]">
+        Ingresá el alias
+        <input formControlName="valor" type="text" id="alias" class="bg-transparent outline-none px-2 py-3 border-b border-[#818181] text-[#818181]" placeholder="Alias" maxlength="100">
+      </label>
+      <p *ngIf="tradeForm.getRawValue().valor == userInfo.alias" class="text-[#ff5874] animate-pulse">¡No puedes transferir a tu propia cuenta!</p>
+    </div>
     <button
-      (click)="increaseStep()" type="button"
-      [disabled]="tradeForm.get('cvuOrAlias')?.invalid"
-      [ngClass]="tradeForm.get('cvuOrAlias')?.invalid? 'bg-[#3564FD]/[25%]' : 'bg-[#3564FD] hover:bg-[#0535be]'"
-      class="max-w-[17.25rem] w-full mx-auto py-2 rounded-full text-white duration-200">Continuar</button>
+      (click)="findUser()" type="button"
+      [disabled]="tradeForm.get('valor')?.invalid || tradeForm.getRawValue().valor == userInfo.alias"
+      [ngClass]="tradeForm.get('valor')?.invalid || tradeForm.getRawValue().valor == userInfo.alias? 'bg-[#3564FD]/[25%]' : 'bg-[#3564FD] hover:bg-[#0535be]'"
+      class="max-w-[17.25rem] w-full mx-auto py-2 rounded-full text-white duration-200 text-sm sm:text-base">Continuar</button>
   </div>
 
-  <!-- si busqué un usuario se confirma que se encontró -->
-  <div *ngIf="formStep == 2 && !tradeFinished" class="text-[#3A3A3A] flex flex-col gap-10 max-w-[23.125rem] w-full mx-auto">
-    <ng-container *ngIf="destiny; else elseTemplate">
+  <!-- si se buscó un usuario se confirma que se encontró -->
+  <div *ngIf="formStep == 2 && !tradeFinished && !somethingWrong" class="text-[#3A3A3A] flex flex-col gap-5 max-w-[23.125rem] w-full mx-auto px-3 pb-10">
+    <ng-container *ngIf="transferDestiny; else elseTemplate">
       <div class="flex flex-col gap-6">
-        <p>¿Esta es la cuenta a la que querés transferir?</p>
-        <p class="text-lg">{{destiny.name}} {{destiny.lastname}}</p>
+        <p class="text-sm sm:text-base">¿Esta es la cuenta a la que querés transferir?</p>
+        <p class="text-base sm:text-lg">{{transferDestiny.name}} {{transferDestiny.apellido}}</p>
         <div class="flex flex-col gap-2 text-sm text-[#818181]">
-          <p>Alias: {{destiny.alias}}</p>
-          <p>CVU: {{destiny.cvu}}</p>
+          <p>Alias: {{transferDestiny.alias}}</p>
+          <p>CVU: {{transferDestiny.cbu}}</p>
         </div>
       </div>
-      <button (click)="increaseStep()" type="button" class="max-w-[17.25rem] w-full mx-auto py-2 bg-[#3564FD] rounded-full text-white duration-200 hover:bg-[#0535be]">Continuar</button>
+      <button (click)="increaseStep()" type="button" class="max-w-[17.25rem] mt-5 w-full mx-auto py-2 bg-[#3564FD] rounded-full text-white duration-200 hover:bg-[#0535be]">Continuar</button>
     </ng-container>
     <ng-template #elseTemplate>
-      <p class="text-center text-xl">No se encontró la cuenta.</p>
-      <button (click)="refresh()" type="button" class="max-w-[17.25rem] w-full mx-auto py-2 bg-[#3564FD] rounded-full text-white duration-200 hover:bg-[#0535be]">Volver</button>
+      <p class="text-center text-lg sm:text-xl">No se encontró la cuenta.</p>
     </ng-template>    
+    <button (click)="resetTradeForm()" type="button" class="max-w-[17.25rem] text-sm sm:text-base w-full mx-auto py-2 bg-[#3564FD] rounded-full text-white duration-200 hover:bg-[#0535be]">Volver</button>
   </div>
   
   <!-- si quiero transferir a un contacto se viene al paso 2 a indicar el monto -->
-  <div *ngIf="formStep == 3 && !tradeFinished" class="text-[#818181] flex flex-col gap-10 max-w-[23.125rem] w-full mx-auto">
+  <div *ngIf="formStep == 3 && !tradeFinished && !somethingWrong" class="text-[#818181] flex flex-col gap-10 max-w-[23.125rem] w-full mx-auto px-3 pb-10">
     <div class="flex flex-col gap-4 relative">
       <div class="flex items-center gap-3">
-        <p class="text-3xl absolute">$</p>
-        <input formControlName="mount" type="number" class="text-5xl w-full text-center outline-none bg-transparent" placeholder="0">
+        <p class="text-2xl sm:text-3xl absolute">$</p>
+        <input formControlName="cashAmount" type="number" class="text-4xl sm:text-5xl w-full text-center outline-none bg-transparent" placeholder="0">
       </div>
-      <p *ngIf="tradeForm.get('mount')?.invalid && tradeForm.get('mount')?.dirty" class="text-[#FF7990] font-medium text-center">Monto inválido</p>
-      <p class="text-center">En tu Ualá tenés disponibles {{user.balance | currency}}</p>
+      <p *ngIf="tradeForm.get('cashAmount')?.invalid && tradeForm.get('cashAmount')?.dirty" class="text-[#FF7990] animate-pulse text-sm sm:text-base font-medium text-center">Monto inválido</p>
+      <p class="text-center text-sm sm:text-base">En tu Ualá tenés disponibles {{userInfo.balance | currency}}</p>
     </div>
     <button 
-      [disabled]="tradeForm.get('mount')?.invalid" [ngClass]="tradeForm.get('mount')?.invalid? 'bg-[#3564FD]/[25%]' : 'bg-[#3564FD] hover:bg-[#0535be]'"
+      [disabled]="tradeForm.get('cashAmount')?.invalid" [ngClass]="tradeForm.get('cashAmount')?.invalid? 'bg-[#3564FD]/[25%]' : 'bg-[#3564FD] hover:bg-[#0535be]'"
       (click)="increaseStep()" type="button"
-      class="max-w-[17.25rem] w-full mx-auto py-2 rounded-full text-white duration-200">
+      class="max-w-[17.25rem] w-full mx-auto py-2 text-sm sm:text-base rounded-full text-white duration-200">
         Continuar
       </button>
   </div>
 
   <!-- confirmar transferencia -->
-  <div *ngIf="formStep == 4 && !tradeFinished" class="text-[#3A3A3A] max-w-[48.875rem] w-full flex flex-col gap-14 mx-auto">
-    <div class="grid grid-cols-2 gap-10">
+  <div *ngIf="formStep == 4 && !tradeFinished && !somethingWrong" class="text-[#3A3A3A] max-w-[48.875rem] w-full flex flex-col gap-14 mx-auto px-3 pb-10">
+    <div class="grid sm:grid-cols-2 gap-10">
       <div class="flex flex-col gap-4">
-        <p class="text-[#818181]">Vas a transferir</p>
-        <div class="flex flex-col gap-10">
-          <p class="text-3xl font-light">{{tradeForm.getRawValue().mount | currency}}</p>
-          <label for="motive" class="flex flex-col gap-3 font-light text-[#818181]">
+        <p class="text-[#818181] text-sm sm:text-base">Vas a transferir</p>
+        <div class="flex flex-col gap-10 text-sm sm:text-base">
+          <p class="text-2xl sm:text-3xl font-light">{{tradeForm.getRawValue().cashAmount | currency}}</p>
+          <label for="reason" class="flex flex-col gap-3 font-light text-[#818181]">
             Motivo
-            <input formControlName="motive" type="text" id="motive"
+            <input formControlName="Reason" type="text" id="reason" maxlength="100"
+              class="bg-transparent outline-none px-2 py-3 border-b border-[#818181] text-[#3A3A3A]" placeholder="Varios">
+          </label>
+          <label for="message" class="flex flex-col gap-3 font-light text-[#818181]">
+            Mensaje
+            <input formControlName="message" type="text" id="message" maxlength="100"
               class="bg-transparent outline-none px-2 py-3 border-b border-[#818181] text-[#3A3A3A]" placeholder="Varios">
           </label>
         </div>
       </div>
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-4 text-sm sm:text-base">
         <p class="text-[#818181]">Destino</p>
         <div class="flex flex-col gap-3">
-          <p class="text-xl font-semibold">{{destiny.name}} {{destiny.lastname}}</p>
-          <p class="text-[#818181]">Alias: {{destiny.alias}}</p>
-          <p class="text-[#818181]">CVU: {{destiny.cvu}}</p>
+          <p class="text-lg sm:text-xl font-semibold">{{transferDestiny.name}} {{transferDestiny.apellido}}</p>
+          <p class="text-[#818181]">Alias: {{transferDestiny.alias}}</p>
+          <p class="text-[#818181]">CVU: {{transferDestiny.cbu}}</p>
         </div>
       </div>
     </div>
+    <p *ngIf="somethingWrong" class="text-sm sm:text-base text-[#ff5874] animate-pulse">Algo salió mal.</p>
     <div class="flex justify-center">
       <button (click)="submitTrade()"
         type="submit"
         [disabled]="tradeForm.invalid"
         [ngClass]="tradeForm.invalid? 'bg-[#3564FD]/[25%]' : 'bg-[#3564FD] hover:bg-[#0535be]'"
-        class="max-w-[17.25rem] w-full mx-auto py-2 rounded-full text-white duration-200">Transferir</button>
+        class="max-w-[17.25rem] text-sm sm:text-base w-full mx-auto py-2 rounded-full text-white duration-200">Transferir</button>
     </div>
   </div>
 
-  <!-- pantalla de transferencia confirmada -->
-  <div *ngIf="tradeFinished" class="text-[#3A3A3A] max-w-[23.125rem] w-full flex flex-col items-center mx-auto">
-    <fa-icon [icon]="faCircleCheck" class="text-7xl text-[#3564FD]"></fa-icon>
-    <p class="mt-6 mb-10 text-lg font-light">Su transferencia fue realizada con éxito</p>
-    <button (click)="refresh()" class="max-w-[17.25rem] w-full mx-auto py-2 rounded-full text-white duration-200 bg-[#3564FD] hover:bg-[#0535be]">Terminar</button>
-  </div>
-
 </form>
+
+<!-- pantalla de transferencia confirmada -->
+<div *ngIf="tradeFinished" class="text-[#3A3A3A] max-w-[23.125rem] w-full flex flex-col items-center mx-auto">
+  <fa-icon [icon]="faCircleCheck" class="text-5xl sm:text-7xl text-[#3564FD]"></fa-icon>
+  <p class="mt-6 mb-10 sm:text-lg font-light">Su transferencia fue realizada con éxito.</p>
+  <button (click)="resetTradeForm()"
+    class="max-w-[17.25rem] text-sm sm:text-base w-full mx-auto py-2 rounded-full text-white duration-200 bg-[#3564FD] hover:bg-[#0535be]">Terminar</button>
+</div>
+
+<!-- pantalla de transferencia salio mal -->
+<div *ngIf="somethingWrong" class="text-[#3A3A3A] max-w-[23.125rem] w-full flex flex-col items-center mx-auto">
+  <fa-icon [icon]="faCircleXmark" class="text-5xl sm:text-7xl text-[#3564FD]"></fa-icon>
+  <p class="mt-6 mb-10 sm:text-lg font-light">Algo salió mal.</p>
+  <button (click)="resetTradeForm()"
+    class="max-w-[17.25rem] text-sm sm:text-base w-full mx-auto py-2 rounded-full text-white duration-200 bg-[#3564FD] hover:bg-[#0535be]">Terminar</button>
+</div>
