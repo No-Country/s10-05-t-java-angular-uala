@@ -13,7 +13,7 @@
 ### Backend:
 - Java SpringBoot
 
-### Testing
+### Testing:
 - Selenium IDE
 - Jhenkins
 - CorelDraw 21
