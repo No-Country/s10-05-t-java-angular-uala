@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   userInfo: any;
 
   ngOnInit(): void {
+    this.authService.getUserInfo();
     this.userInfoSubscription = this.authService.getUserInfoObservable().subscribe({
       next: (data) => {
         this.userInfo = data;
@@ -218,7 +219,5 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.userInfoSubscription?.unsubscribe();
   }
-
-
 
 }

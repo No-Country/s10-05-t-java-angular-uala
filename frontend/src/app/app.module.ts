@@ -12,7 +12,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { StringInitialPipe } from './pipes/string-initial.pipe';
 import { TotalExpensesPipe } from './pipes/total-expenses.pipe';
 import { AuthInterceptor } from './services/interceptors/auth.interceptor';
-import { HomeComponent } from './pages/home/home.component';
 
 
 // import { PagarComponent } from './pages/pagar/pagar.component';
