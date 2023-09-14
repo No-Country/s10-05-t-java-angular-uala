@@ -31,5 +31,6 @@
 -  Dante Fontana - Tester
 -  Ricardo Thalhuen Moraga Cortez - Tester
 
-## Live Site
-[https://s10-05-t-java-angular-uala.web.app](https://s10-05-t-java-angular-uala.web.app)
+## Links
+- [Figma](https://www.figma.com/file/DtT1Zgip6mBx1eDLsmjvJe/Ual%C3%A1?type=design&node-id=746-8209&mode=design&t=xuovkUgokDxbGPXC-0)
+- [Live site](https://s10-05-t-java-angular-uala.web.app)
