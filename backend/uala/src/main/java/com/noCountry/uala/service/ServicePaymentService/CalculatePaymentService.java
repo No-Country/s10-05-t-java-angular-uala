@@ -83,11 +83,13 @@ public class CalculatePaymentService {
         for (int i = servicio.size()-1; i >=0 ; i--) {
             listService.add(new CalculatePaymentDTO(servicio.get(i).getServiceType(),servicio.get(i).getNoService(),
                     servicio.get(i).getServiceOwner(),servicio.get(i).getExpirationDate(), servicio.get(i).getIssueDate(),
-                    servicio.get(i).getInvoiceSeries(),servicio.get(i).getBalance(),servicio.get(i).getDescriptionService()));
+                    servicio.get(i).getInvoiceSeries(),servicio.get(i).getBalance(),servicio.get(i).getDescriptionService(),
+                    servicio.get(i).getPaymentDate()));
         }
         for (int i =recharge.size()-1 ; i >=0; i--) {
             listRecharge.add(new RechargeMovilServiceDTO(recharge.get(i).getServiceType(), recharge.get(i).getNoService(),
-                    recharge.get(i).getBalance(), recharge.get(i).getPaymentDate(),recharge.get(i).getRefPayment(),recharge.get(i).getInvoiceSeries()));
+                    recharge.get(i).getBalance(), recharge.get(i).getPaymentDate(),recharge.get(i).getRefPayment(),
+                    recharge.get(i).getInvoiceSeries()));
         }
         response.setRecharge(listRecharge);
         response.setService(listService);

@@ -1,5 +1,5 @@
 # s10-05-t-java-angular-uala
-![](ualá-ss.png)
+![](uala-ss.png)
 ## Tecnologías:
 
 ### UX/UI:

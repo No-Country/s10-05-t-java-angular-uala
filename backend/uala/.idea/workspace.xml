@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49dbea50-a987-43e9-ac53-bdf5833aebd6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.noCountry.uala.UalaApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.noCountry.uala.UalaApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.noCountry.uala.UalaApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.noCountry.uala.UalaApplicationTests.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/noCountry/uala/UalaApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/noCountry/uala/UalaApplicationTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/uala-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/uala-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/uala-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/uala-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noCountry/uala/models/dto/ServicePayment/CalculatePaymentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noCountry/uala/models/dto/ServicePayment/CalculatePaymentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noCountry/uala/service/ServicePaymentService/CalculatePaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noCountry/uala/service/ServicePaymentService/CalculatePaymentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
