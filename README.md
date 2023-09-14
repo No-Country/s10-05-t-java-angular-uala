@@ -26,7 +26,7 @@
 -  Federico Burgos - Frontend
 -  Pedro Saavedra - Frontend
 -  David Moreno Castilla - Frontend
--  Marcos Paz Goncheff - Backend
+-  Marcos Paz Goncheff - Backend  https://www.linkedin.com/in/marcos-paz-goncheff/
 -  Marvin Archila - Backend
 -  Dante Fontana - Tester
 -  Ricardo Thalhuen Moraga Cortez - Tester
