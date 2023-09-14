@@ -112,6 +112,7 @@ export class TradeFormComponent implements OnInit, OnDestroy {
         console.log(data);
         this.increaseStep();
         this.tradeFinished = true;
+        this.authService.getUserInfo();
       },
       error: (err) => {
         console.log(err);
