@@ -1,10 +1,9 @@
 package com.noCountry.uala.models.dto.ServicePayment;
 
-import com.noCountry.uala.security.util.GetUserLogged;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Date;
 import java.text.DecimalFormat;
@@ -12,6 +11,7 @@ import java.text.DecimalFormat;
 @Data
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class CalculatePaymentDTO {
     private String serviceType;
     private String noService;
@@ -41,9 +41,26 @@ public class CalculatePaymentDTO {
 
     private void others(String userName){
         this.serviceOwner=userName;
-        this.invoiceSeries="A-564sd654".toUpperCase();
+        this.invoiceSeries=calculateInvoiceSerie();
         this.descriptionService="Periodo de facturacion de 30 dias iniciando el "+ new Date(this.issueDate.getTime()-2678400000L).toString()
                                 +" al "+new Date(this.issueDate.getTime()-86400000L).toString();
+    }
+
+    private String calculateInvoiceSerie(){
+        int letraInicial= (int)(Math.random()*25)+65;
+        char letra1= (char) letraInicial;
+        int letraMedia1= (int)(Math.random()*25)+65;
+        char letra2= (char) letraMedia1;
+        int letraMedia2= (int)(Math.random()*25)+65;
+        char letra3= (char) letraMedia2;
+        int cantidad1= (int)(Math.random()*899)+1;
+        String valora=System.currentTimeMillis()+"";
+        char[] valoraa=valora.toCharArray();
+        valora="";
+        for (int i = valoraa.length-1; i >valoraa.length-5; i--) {
+            valora+=valoraa[i];
+        }
+        return letra1+"-"+cantidad1+letra2+letra3+valora;
     }
 
     private void generateBalance(){

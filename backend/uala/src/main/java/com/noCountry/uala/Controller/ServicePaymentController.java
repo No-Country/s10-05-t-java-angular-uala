@@ -1,5 +1,6 @@
 package com.noCountry.uala.Controller;
 import com.noCountry.uala.models.dto.ServicePayment.CalculatePaymentDTO;
+import com.noCountry.uala.models.dto.ServicePayment.RechargeMovilServiceDTO;
 import com.noCountry.uala.service.ServicePaymentService.CalculatePaymentService;
 import org.apache.coyote.http11.filters.IdentityOutputFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,14 @@ public class ServicePaymentController {
     @GetMapping("/calculate/balance")
     public int totalBalance(){
         return paymentService.balancePayment();
+    }
+
+    @PostMapping("/confirm/recharge")
+    public ResponseEntity<?> confirmRechargeService(@RequestBody RechargeMovilServiceDTO movilServiceDTO){
+        return paymentService.saveRechargeService(movilServiceDTO);
+    }
+    @GetMapping("/history/payments")
+    public ResponseEntity<?> historyPaymentsAndRecharge(){
+        return paymentService.findAllServiceAndRecharge();
     }
 }

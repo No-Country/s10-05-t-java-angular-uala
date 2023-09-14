@@ -1,6 +1,8 @@
 package com.noCountry.uala.service.ServicePaymentService;
 
 import com.noCountry.uala.models.dto.ServicePayment.CalculatePaymentDTO;
+import com.noCountry.uala.models.dto.ServicePayment.RechargeMovilServiceDTO;
+import com.noCountry.uala.models.dto.ServicePayment.ResponseServiceAndRechargeDTO;
 import com.noCountry.uala.models.entity.ServicePaymentModel.ServicePaymentModel;
 import com.noCountry.uala.models.entity.Wallet;
 import com.noCountry.uala.repository.ServicePaymentRepository.IServicePayment;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,5 +55,44 @@ public class CalculatePaymentService {
             totalBalance+= payment.getBalance();
         }
         return totalBalance;
+    }
+
+    public ResponseEntity<?> saveRechargeService(RechargeMovilServiceDTO rechargeMovilDTO){
+        rechargeMovilDTO.generateDateBuy();
+        ServicePaymentModel model= new ServicePaymentModel(0,""+System.currentTimeMillis()+"", new Date(System.currentTimeMillis()),
+                rechargeMovilDTO.getEmpresa(), rechargeMovilDTO.getNoService(), getUserLogged.userName(),
+                null, null, rechargeMovilDTO.getInvoiceSeries(),
+                (float)rechargeMovilDTO.getPrice(), "", true, getUserLogged.walletOfSession());
+        if (model.getRefPayment()!=null){
+            walletService.discountCash(rechargeMovilDTO.getPrice());
+            servicePayment.save(model);
+
+            return new ResponseEntity(model, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(rechargeMovilDTO, HttpStatus.BAD_REQUEST);
+    }
+    public ResponseEntity<?> findAllServiceAndRecharge(){
+        Wallet wallet=getUserLogged.walletOfSession();
+        List<ServicePaymentModel> findAllData = servicePayment.findAll();
+        List<ServicePaymentModel> findAll = findAllData.stream().filter(data->data.getWalletPayment()==wallet).toList();
+        List<ServicePaymentModel> servicio=findAll.stream().filter(data->data.isRecharger()==false).toList();
+        List<ServicePaymentModel> recharge=findAll.stream().filter(data->data.isRecharger()==true).toList();
+        ResponseServiceAndRechargeDTO response = new ResponseServiceAndRechargeDTO();
+        List<CalculatePaymentDTO> listService = new ArrayList<>();
+        List<RechargeMovilServiceDTO> listRecharge = new ArrayList<>();
+        for (int i = servicio.size()-1; i >=0 ; i--) {
+            listService.add(new CalculatePaymentDTO(servicio.get(i).getServiceType(),servicio.get(i).getNoService(),
+                    servicio.get(i).getServiceOwner(),servicio.get(i).getExpirationDate(), servicio.get(i).getIssueDate(),
+                    servicio.get(i).getInvoiceSeries(),servicio.get(i).getBalance(),servicio.get(i).getDescriptionService()));
+        }
+        for (int i =recharge.size()-1 ; i >=0; i--) {
+            listRecharge.add(new RechargeMovilServiceDTO(recharge.get(i).getServiceType(), recharge.get(i).getNoService(),
+                    recharge.get(i).getBalance(), recharge.get(i).getPaymentDate(),recharge.get(i).getRefPayment(),recharge.get(i).getInvoiceSeries()));
+        }
+        response.setRecharge(listRecharge);
+        response.setService(listService);
+        response.calculateBalanceService();
+        response.calculateBalanceRecharge();
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 }

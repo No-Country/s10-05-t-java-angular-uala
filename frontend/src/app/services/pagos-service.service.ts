@@ -13,6 +13,7 @@ let balance : number =0;
 export class PagosServiceService {
  
   private _envio: String[]=[];
+  private empresa:String="";
   constructor(private http: HttpClient) { }
 
   findService(modelo:any){
@@ -28,6 +29,12 @@ export class PagosServiceService {
   get_Envio(){
     return this._envio;
   }
+  definirEmpresa(dato: String){
+    this.empresa=dato;
+  }
+  get_empresa(){
+    return this.empresa;
+  }
 
   saveServicePayment(servicio : ServicioInter): Observable<any>{
     return this.http.post<ServicioInter>(`${URL_API}confirm/service`, servicio, {observe: 'response'});
@@ -37,6 +44,13 @@ export class PagosServiceService {
     return this.http.get<number>(`${URL_API}calculate/balance`)
   }
 
+  saveRechargeService(modelo:any){
+    return this.http.post<any>(`${URL_API}confirm/recharge`, modelo, {observe: 'response'});
+  }
+
+  findHistory(){
+    return this.http.get<any>(`${URL_API}history/payments`)
+  }
   
 
 }
