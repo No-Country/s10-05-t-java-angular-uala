@@ -13,6 +13,12 @@
 ### Backend:
 - Java SpringBoot
 
+### Testing
+- Selenium IDE
+- Jhenkins
+- CorelDraw 21
+- Testing manual
+
 ## Integrantes del grupo:
 
 -  Karen Sánchez - UX/UI
