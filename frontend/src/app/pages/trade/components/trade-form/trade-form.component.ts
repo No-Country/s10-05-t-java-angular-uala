@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
+import { faCircleCheck, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { TradeService } from 'src/app/services/trade.service';
 
 @Component({
@@ -16,87 +18,66 @@ import { TradeService } from 'src/app/services/trade.service';
     FontAwesomeModule
   ]
 })
-export class TradeFormComponent implements OnInit {
+export class TradeFormComponent implements OnInit, OnDestroy {
 
   faCircleCheck = faCircleCheck;
+  faCircleXmark = faCircleXmark;
 
+  authService = inject(AuthService);
   tradeService = inject(TradeService);
   formBuilder= inject(FormBuilder);
 
+  userInfo: any;
+  userInfoSubscription: Subscription | undefined;
+  
   formStep: number = 0;
+  formStepSubscription: Subscription | undefined;
 
+  transferDestiny: any;
+  transferDestinySubscription: Subscription | undefined;
+  
   tradeFinished: boolean = false;
+  somethingWrong: boolean = false;
 
   tradeForm: FormGroup = new FormGroup({});
 
-  destiny: any = {
-    name: 'Carlos',
-    lastname: 'Peralta',
-    cvu: 22045687567,
-    alias: 'carlos.uala.623'
-  };
-
-  user = {
-    name: 'Federico',
-    lastname: 'Burgos',
-    balance: 365400,
-    contacts: [
-      {
-        name: 'Jimena',
-        lastname: 'Santiago',
-        alias: 'jimena.santiago.uala',
-        img: ''
-      },
-      {
-        name: 'Matias',
-        lastname: 'Balduzzi',
-        alias: 'matias.balduzzi.uala',
-        img: 'https://pbs.twimg.com/media/FwqKZD2WIAArXLV.png'
-      }
-    ],
-    expenses: [
-      {
-        name: 'Servicios y débitos automáticos',
-        value: 7000
-      },
-      {
-        name: 'Compras',
-        value: 5000
-      },
-      {
-        name: 'Otros',
-        value: 3000
-      },
-      {
-        name: 'Supermercados y alimentos',
-        value: 1900
-      },
-      {
-        name: 'Restaurantes y bares',
-        value: 1500
-      },
-      {
-        name: 'Salud y deportes',
-        value: 1200
-      },
-      {
-        name: 'Transporte y auto',
-        value: 1200
-      }
-    ]
-  }
-
   ngOnInit(): void {
+    this.setUserInfoSubscription();
+    this.setFormStepSubscription();
     this.tradeForm = this.formBuilder.group(
       {
-        cvuOrAlias: ['', Validators.required],
-        mount: ['', [Validators.required, Validators.min(1), Validators.max(this.user.balance)]],
-        motive: ['', Validators.required]
+        valor: ['noche.frontend.pato.uala', Validators.required],
+        cashAmount: ['', [Validators.required, Validators.min(1), Validators.max(this.userInfo.balance)]],
+        Reason: ['', Validators.required],
+        message: ['', Validators.required]
       }
-    )
-    this.tradeService.getFormStep().subscribe({
+    );
+    this.setContactDestinySubscription();
+  }
+
+  setUserInfoSubscription() {
+    this.userInfoSubscription = this.authService.getUserInfoObservable().subscribe({
+      next: (res) => {
+        this.userInfo = res;
+      }
+    });
+  }
+
+  setFormStepSubscription() {
+    this.formStepSubscription = this.tradeService.getFormStep().subscribe({
       next: (res) => {
         this.formStep = res;
+      }
+    });
+  }
+
+  setContactDestinySubscription() {
+    this.transferDestinySubscription = this.tradeService.getTransferDestiny().subscribe({
+      next: (res) => {
+        if (res) {
+          this.transferDestiny = res;
+          this.tradeForm.get('valor')?.setValue(this.transferDestiny.alias);
+        }
       }
     });
   }
@@ -105,14 +86,44 @@ export class TradeFormComponent implements OnInit {
     this.tradeService.setFormStep(this.formStep + 1);
   }
 
-  refresh() {
-    location.reload();
+  findUser() {
+    const filter = this.tradeForm.getRawValue().valor;
+    this.tradeService.findUser(filter).subscribe({
+      next: (res) => {
+        this.transferDestiny = res;
+        this.increaseStep()
+      },
+      error: (err) => {
+        this.increaseStep()
+      }
+    });
+  }
+
+  resetTradeForm() {
+    this.tradeService.setFormStep(0);
+    this.tradeForm.reset();
   }
 
   submitTrade() {
-    this.increaseStep();
-    this.tradeService.submitTrade(this.tradeForm.getRawValue());
-    this.tradeFinished = true;
+    this.tradeService.submitTrade(this.tradeForm.getRawValue()).subscribe({
+      next: (data) => {
+        this.increaseStep();
+        this.tradeFinished = true;
+        this.authService.getUserInfo();
+      },
+      error: (err) => {
+        this.increaseStep();
+        this.somethingWrong = true;
+      }
+    });
+    
+  }
+
+  ngOnDestroy(): void {
+    this.userInfoSubscription?.unsubscribe();
+    this.formStepSubscription?.unsubscribe();
+    this.tradeService.setTransferDestiny(undefined);
+    this.transferDestinySubscription?.unsubscribe();
   }
 
 }

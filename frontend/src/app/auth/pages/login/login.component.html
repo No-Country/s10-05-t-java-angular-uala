@@ -34,14 +34,14 @@
                     </button>
                 </article>
                 <div>
-                    <span routerLink="" class="text-sm text-[#3564FD] cursor-pointer">¿Olvidaste tu contraseña?</span>
+                    <a routerLink="/work-in-progress" class="text-sm text-[#3564FD]">¿Olvidaste tu contraseña?</a>
                 </div>
                 <button type="submit" [disabled]="loginForm.invalid" [ngClass]="loginForm.invalid? 'opacity-50' : 'hover:bg-[#0535be]'" class="bg-[#3564FD]  transition-colors w-full text-white rounded-full  px-5 py-2">Iniciar sesión</button>
             </section>             
         </form>        
         <div class="text-sm leading-5 flex flex-row gap-2 items-center justify-center max-w-[500px] p-4 md:p-0">
             <img src={{security}} alt="security">
-            <p class="font-semibold text-gray-800">Sentite seguro con Ualá. <span class="text-[#525151]">Nunca compartas tus datos personales, claves y números de tarjetas con nadie.</span><a href="" class="text-[#3564fd]"> Te compartimos algunos detalles</a></p>
+            <p class="font-semibold text-gray-800">Sentite seguro con Ualá. <span class="text-[#525151]">Nunca compartas tus datos personales, claves y números de tarjetas con nadie.</span><a href="/work-in-progress" class="text-[#3564fd]"> Te compartimos algunos detalles</a></p>
         </div>  
     </div>
     <div class="flex-col items-center justify-center hidden lg:flex">

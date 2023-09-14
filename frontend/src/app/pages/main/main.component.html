@@ -1,4 +1,4 @@
-<div class="flex h-screen overflow-hidden">
+<div *ngIf="userInfo" class="flex h-screen overflow-hidden">
 
   <!-- desktop sidebar -->
   <div class="max-w-[16rem] w-full flex-grow flex-col border-r hidden lg:flex">
@@ -17,7 +17,7 @@
         </a>
       </li>
       <li class="flex">
-        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+        <a routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
           class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
           <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faCreditCard"></fa-icon>
           Tarjeta
@@ -39,35 +39,35 @@
         </a>
       </li>
       <li class="flex">
-        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+        <a routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
           class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
           <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faArrowTrendUp"></fa-icon>
           Inversiones
         </a>
       </li>
       <li class="flex">
-        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+        <a routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
           class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
           <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faCoins"></fa-icon>
           Consumo en cuotas
         </a>
       </li>
       <li class="flex">
-        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+        <a routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
           class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
           <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faThumbsUp"></fa-icon>
           Prestamos
         </a>
       </li>
       <li class="flex">
-        <a routerLink="/main/pagar" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+        <a routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
           class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
           <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faDollarSign"></fa-icon>
           Pagos y recargas
         </a>
       </li>
       <li class="flex">
-        <a routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+        <a routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
           class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
           <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faTags"></fa-icon>
           Descuentos
@@ -112,7 +112,7 @@
           </a>
         </li>
         <li class="flex">
-          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          <a (click)="closeSidebar()" routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
             class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
             <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faCreditCard"></fa-icon>
             Tarjeta
@@ -134,35 +134,35 @@
           </a>
         </li>
         <li class="flex">
-          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          <a (click)="closeSidebar()" routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
             class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
             <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faArrowTrendUp"></fa-icon>
             Inversiones
           </a>
         </li>
         <li class="flex">
-          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          <a (click)="closeSidebar()" routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
             class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
             <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faCoins"></fa-icon>
             Consumo en cuotas
           </a>
         </li>
         <li class="flex">
-          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          <a (click)="closeSidebar()" routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
             class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
             <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faThumbsUp"></fa-icon>
             Prestamos
           </a>
         </li>
         <li class="flex">
-          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          <a (click)="closeSidebar()" routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
             class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
             <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faDollarSign"></fa-icon>
             Pagos y recargas
           </a>
         </li>
         <li class="flex">
-          <a (click)="closeSidebar()" routerLink="/a" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
+          <a (click)="closeSidebar()" routerLink="/work-in-progress" routerLinkActive="bg-[#F3F4F6] text-[#022A9B]"
             class="flex items-center w-full gap-3 p-2 rounded-md hover:bg-[#F3F4F6]">
             <fa-icon class="flex items-center justify-center w-6 text-xl aspect-square" [icon]="faTags"></fa-icon>
             Descuentos
@@ -189,20 +189,15 @@
 
   <!-- header -->
   <div class="flex flex-col w-full overflow-y-auto">
-    <div class="flex justify-between items-center sticky z-10 top-0 bg-white px-10 min-h-[4.5rem] border-b">
+    <div class="flex justify-between items-center sticky z-10 top-0 bg-white px-3 sm:px-10 min-h-[4.5rem] border-b">
       <div class="flex items-center gap-3">
         <button class="lg:hidden" (click)="showSidebar()">
           <fa-icon [icon]="faBars"></fa-icon>
         </button>
-        <div class="flex items-center justify-center overflow-hidden bg-[#3564FD]/[15%] rounded-full w-11 h-11">
-          <ng-container *ngIf="user.img; else noUserImg">
-            <img src="{{user?.img}}" alt="Profile user image" class="object-cover w-full h-full">
-          </ng-container>
-          <ng-template #noUserImg>
-            <p class="text-[#3564FD] font-semibold">{{user.name | stringInitial}}<!-- {{user.lastname | stringInitial}} --></p>
-          </ng-template>
+        <div class="flex items-center justify-center overflow-hidden bg-[#3564FD]/[15%] rounded-full w-9 h-9 sm:w-11 sm:h-11">
+          <p class="text-[#3564FD] text-xs sm:text-base font-semibold">{{userInfo.name | stringInitial}}{{userInfo.apellido | stringInitial}}</p>
         </div>
-        <h2 class="text-xl font-semibold text-[#3A3A3A]">Hola, {{user.name}}</h2>
+        <h2 class="text-base md:text-xl font-semibold text-[#3A3A3A]">Hola, {{userInfo.name}}</h2>
       </div>
       <button class="text-2xl w-7 text-[#022A9B] hover:rotate-12 duration-200">
         <span class="sr-only">Notifications</span>
@@ -210,5 +205,12 @@
       </button>
     </div>
     <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div *ngIf="!userInfo" class="min-h-screen bg-white flex items-center justify-center">
+  <div class="flex flex-col gap-7 items-center">
+    <img src="../../../assets/svg/uala.svg" alt="">
+    <span class="loader"></span>
   </div>
 </div>

@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 })
 export class BankingComponent {
 
-  @Input() user: any = {}
+  @Input() userInfo: any = {}
 
 
   faEye = faEye;
@@ -29,6 +29,8 @@ export class BankingComponent {
   faCircleExclamation = faCircleExclamation;
 
   balanceVisibility: boolean = false;
+  cbuCopyAlert: boolean = false;
+  aliasCopyAlert: boolean = false;
 
   toggleBalanceVisibility() {
     this.balanceVisibility = !this.balanceVisibility;
@@ -44,6 +46,22 @@ export class BankingComponent {
     let dialog = document.getElementById('alias-dialog');
     // @ts-ignore
     dialog?.close();
+  }
+
+  copyCbu() {
+    this.cbuCopyAlert = true;
+    navigator.clipboard.writeText(this.userInfo.cbu);
+    setTimeout(() => {
+      this.cbuCopyAlert = false;
+    }, 5000);
+  }
+
+  copyAlias() {
+    this.aliasCopyAlert = true;
+    navigator.clipboard.writeText(this.userInfo.alias);
+    setTimeout(() => {
+      this.aliasCopyAlert = false;
+    }, 5000);
   }
 
 }

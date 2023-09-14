@@ -64,6 +64,11 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'work-in-progress',
+    loadComponent: () => import('./pages/work-in-progress/work-in-progress.component').then(c => c.WorkInProgressComponent),
+    title: 'En desarrollo'
+  },
+  {
     path: '**',
     redirectTo: 'main',
     pathMatch: 'full'

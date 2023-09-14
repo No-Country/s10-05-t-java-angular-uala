@@ -6,7 +6,7 @@ import { faPlus, faMagnifyingGlass, faTrash } from '@fortawesome/free-solid-svg-
 import { StringInitialPipe } from 'src/app/pipes/string-initial.pipe';
 import { TradeFormComponent } from './components/trade-form/trade-form.component';
 import { TradeService } from 'src/app/services/trade.service';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-trade',
@@ -31,69 +31,25 @@ export class TradeComponent implements OnInit, OnDestroy {
   faTrash = faTrash;
 
   formStep: number = 0;
-
-  tradeForm: boolean = false;
-
-  user = {
-    name: 'Federico',
-    lastname: 'Burgos',
-    balance: 365400,
-    contacts: [
-      {
-        name: 'Jimena',
-        lastname: 'Santiago',
-        alias: 'jimena.santiago.uala',
-        img: ''
-      },
-      {
-        name: 'Matias',
-        lastname: 'Balduzzi',
-        alias: 'matias.balduzzi.uala',
-        img: 'https://pbs.twimg.com/media/FwqKZD2WIAArXLV.png'
-      }
-    ],
-    expenses: [
-      {
-        name: 'Servicios y débitos automáticos',
-        value: 7000
-      },
-      {
-        name: 'Compras',
-        value: 5000
-      },
-      {
-        name: 'Otros',
-        value: 3000
-      },
-      {
-        name: 'Supermercados y alimentos',
-        value: 1900
-      },
-      {
-        name: 'Restaurantes y bares',
-        value: 1500
-      },
-      {
-        name: 'Salud y deportes',
-        value: 1200
-      },
-      {
-        name: 'Transporte y auto',
-        value: 1200
-      }
-    ]
-  }
+  formStepSubscription: Subscription | undefined;
+  userContacts: any;
+  userContactsSubscription: Subscription | undefined;
 
   ngOnInit(): void {
-    this.tradeService.getFormStep().subscribe({
+    this.formStepSubscription = this.tradeService.getFormStep().subscribe({
       next: (res) => {
         this.formStep = res;
       }
     });
+    this.userContactsSubscription = this.tradeService.getUserContacts().subscribe({
+      next: (res) => {
+        this.userContacts = res;
+      }
+    });
   }
 
-  showTradeForm() {
-    this.tradeForm = true;
+  setTransferDestiny(contact: any) {
+    this.tradeService.setTransferDestiny(contact);
   }
 
   setFormStep(value: number) {
@@ -102,6 +58,8 @@ export class TradeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.tradeService.setFormStep(0);
+    this.formStepSubscription?.unsubscribe();
+    this.userContactsSubscription?.unsubscribe();
   }
 
 }

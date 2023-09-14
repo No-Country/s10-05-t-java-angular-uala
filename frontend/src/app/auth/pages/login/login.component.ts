@@ -23,7 +23,7 @@ export class LoginComponent {
   isUserLogged: boolean | undefined;
 
   loginForm = this.formBuilder.nonNullable.group({
-    nombreUsuario: ['Marcos192000', [Validators.required]],
+    nombreUsuario: ['James_Gosling', [Validators.required]],
     password: ['123456', [Validators.required]],
   });
 
@@ -36,7 +36,6 @@ export class LoginComponent {
   onLogin() {
     this.auth.login(this.loginForm.getRawValue()).subscribe({
       next: (res: any) => {
-        console.log(res);
         localStorage.setItem('token', res.token);
         this.router.navigate(['home']);
       },
