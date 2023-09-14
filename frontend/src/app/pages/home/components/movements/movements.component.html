@@ -1,53 +1,57 @@
-<div class="flex flex-col gap-3 px-3 sm:px-6 py-5 bg-white custom-blue-shadow rounded-2xl">
-  <p class="text-[#3A3A3A] font-semibold text-sm sm:text-base">Movimientos</p>
+<div class="flex flex-col gap-3 px-3 sm:px-6 py-5 bg-white custom-blue-shadow rounded-2xl text-[#3A3A3A]">
+  <p class="font-semibold text-sm sm:text-base">Movimientos</p>
   <form>
     <label for="search-bar"
-      class="text-[#3A3A3A] bg-[#F3F4F6] flex w-full gap-4 rounded-full overflow-hidden py-2 px-5">
+      class="bg-[#F3F4F6] flex w-full gap-4 rounded-full overflow-hidden py-2 px-5">
       <fa-icon [icon]="faMagnifyingGlass" class="sm:text-xl"></fa-icon>
       <input id="search-bar" type="search" placeholder="Buscar"
         class="text-sm sm:text-base bg-[#F3F4F6] w-full focus:outline-none">
     </label>
   </form>
 
-  <div class="grid grid-cols-2 lg:gap-x-14 ">
-    <div class="col-span-1 my-1">
-      <h2 class="text-[#3A3A3A] font-semibold text-sm sm:text-base">Recargas Total</h2>
-    </div>
-    <div class="col-span-1 my-1 float-right">
-      <h2 class="float-right">$ {{modelo.totalRecharge}}</h2>
-    </div>
-  </div>
-  <!--hacer un ngfor con el historial-->
-  <div *ngFor="let recarga of modelo.recharge">
-    <div class="grid grid-cols-2 lg:gap-x-14 px-2">
-      <div class="col-span-1 my-1">
-        <h3 class="">Recarga {{recarga.empresa}}</h3>
-      </div>
-      <div class="col-span-1 my-1 float-right">
-        <h3 class="float-right">$ {{recarga.price}}</h3>
-      </div>
-    </div>
-  </div>
-  <!--Fin hacer un ngfor con el historial-->
+  <ng-container *ngIf="loading; else data">
+    <span class="loader m-auto"></span>
+  </ng-container>
+  <ng-template #data>
+    
+    <p *ngIf="error">Algo salió mal.</p>
 
-  <div class="grid grid-cols-2 lg:gap-x-14 ">
-    <div class="col-span-1 my-1">
-      <h2 class="text-[#3A3A3A] font-semibold text-sm sm:text-base">Pagos Servicios Total</h2>
-    </div>
-    <div class="col-span-1 my-1 float-right">
-      <h2 class="float-right">$ {{modelo.totalService}}</h2>
-    </div>
-  </div>
-<!--hacer un ngfor con el historial-->
-  <div *ngFor="let servicio of modelo.service">
-    <div class="grid grid-cols-2 lg:gap-x-14 px-2">
-      <div class="col-span-1 my-1">
-        <h3 class="">{{servicio.serviceType}}</h3>
+    <p *ngIf="(modelo?.recharge.length < 1 && modelo?.service.length < 1) && !error">No hay movimientos registrados aún.</p>
+  
+    <div *ngIf="modelo" class="flex flex-col">
+      <div *ngFor="let item of modelo.recharge" class="py-3 flex justify-between border-b border-[#E5E7EB]">
+        <div class="flex gap-3 items-center">
+          <div class="hidden sm:flex justify-center items-center w-10 h-10 rounded-full bg-[#022A9B]">
+            <fa-icon class="text-white" [icon]="faDollarSign"></fa-icon>
+          </div>
+          <div class="text-sm flex flex-col">
+            <p class="font-medium">Pago de servicios</p>
+            <p class="text-[#818181]">{{item.empresa}}</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-end text-sm">
+          <p class="font-semibold">- {{item.price | currency}}</p>
+          <p class="text-[#818181]">{{item.dateBuy}}</p>
+        </div>
       </div>
-      <div class="col-span-1 my-1 float-right">
-        <h3 class="float-right">$ {{servicio.balance}}</h3>
+      <div *ngFor="let item of modelo.service" class="py-3 flex justify-between border-b border-[#E5E7EB]">
+        <div class="flex gap-3 items-center">
+          <div class="hidden sm:flex justify-center items-center w-10 h-10 rounded-full bg-[#022A9B]">
+            <fa-icon class="text-white" [icon]="faDollarSign"></fa-icon>
+          </div>
+          <div class="text-sm flex flex-col">
+            <p class="font-medium">Pago de servicios</p>
+            <p class="text-[#818181]">{{item.serviceType}}</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-end text-sm">
+          <p class="font-semibold">- {{item.balance | currency}}</p>
+          <p class="text-[#818181]">{{item.issueDate}}</p>
+        </div>
       </div>
     </div>
-  </div>
-  <!--Fin hacer un ngfor con el historial-->
+  </ng-template>
+  
+
+
 </div>

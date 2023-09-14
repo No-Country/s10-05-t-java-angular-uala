@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
 import { PagosServiceService } from 'src/app/services/pagos-service.service';
 
 @Component({
@@ -9,21 +11,38 @@ import { PagosServiceService } from 'src/app/services/pagos-service.service';
   styleUrls: ['./movements.component.css'],
   standalone: true,
   imports: [
-    FontAwesomeModule
+    FontAwesomeModule,
+    CommonModule
   ]
 })
-export class MovementsComponent {
-  constructor(private servicio:PagosServiceService){
-
-  }
-
-  modelo:any=undefined;
+export class MovementsComponent implements OnInit, OnDestroy {
 
   faMagnifyingGlass = faMagnifyingGlass;
-   ngOnInit(): void {
-    this.servicio.findHistory().subscribe(data=>{
-      this.modelo=data;
-    })
-   }
+  faDollarSign = faDollarSign;
+
+  loading: boolean = true;
+  error: boolean = false;
+
+  modelo: any = undefined;
+  modeloSubscription: Subscription | undefined;
+
+  constructor(private pagosService:PagosServiceService) {}
+
+  ngOnInit(): void {
+    this.modeloSubscription = this.pagosService.findHistory().subscribe({
+      next: (res) => {
+        this.modelo = res;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = true;
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+      this.modeloSubscription?.unsubscribe();
+  }
 
 }
