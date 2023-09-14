@@ -90,12 +90,10 @@ export class TradeFormComponent implements OnInit, OnDestroy {
     const filter = this.tradeForm.getRawValue().valor;
     this.tradeService.findUser(filter).subscribe({
       next: (res) => {
-        console.log(res);
         this.transferDestiny = res;
         this.increaseStep()
       },
       error: (err) => {
-        console.log(err);
         this.increaseStep()
       }
     });
@@ -109,13 +107,11 @@ export class TradeFormComponent implements OnInit, OnDestroy {
   submitTrade() {
     this.tradeService.submitTrade(this.tradeForm.getRawValue()).subscribe({
       next: (data) => {
-        console.log(data);
         this.increaseStep();
         this.tradeFinished = true;
         this.authService.getUserInfo();
       },
       error: (err) => {
-        console.log(err);
         this.increaseStep();
         this.somethingWrong = true;
       }
