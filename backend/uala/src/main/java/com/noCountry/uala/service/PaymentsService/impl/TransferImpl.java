@@ -54,13 +54,9 @@ public class TransferImpl implements IPayments, ITransferToThirdParties {
 
 	@Override
 	public boolean sendTransfer(TranferMethodDto dato) {
-
-
-		Wallet wallet1 = walletRepository.findByCbu(((Long) dato.getValor()).longValue());
+		//Wallet wallet1 = walletRepository.findByCbu(((Long) dato.getValor()).longValue());
+		Wallet wallet1 = walletRepository.findByAlias(dato.getValor().toString());
 		Usuario usuario = usuarioRepository.findById(wallet1.getId().intValue()).orElseThrow();
-
-
-
 		Wallet wallet = getUserLogged.walletOfSession();
 		Usuario usuarioActual = usuarioRepository.findById(wallet.getId().intValue()).orElseThrow();
 		if (wallet.getBalance()> dato.getCashAmount())
