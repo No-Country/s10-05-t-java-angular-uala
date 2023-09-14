@@ -20,15 +20,14 @@
 - Testing manual
 
 ## Integrantes del grupo:
-
--  Karen Sánchez - UX/UI
--  Elizabeth León - UX/UI
--  Federico Burgos - Frontend
+-  Karen Sánchez - UX/UI [LinkedIn](https://www.linkedin.com/in/karensanchezg-2112/)
+-  Elizabeth León - UX/UI [LinkedIn](https://www.linkedin.com/in/elizabethleonperez/) - [Behance](https://www.behance.net/elizabethleonperez)
+-  Federico Burgos - Frontend [GitHub](https://github.com/fedev95) - [LinkedIn](https://www.linkedin.com/in/federicoburgos/)
 -  Pedro Saavedra - Frontend
--  David Moreno Castilla - Frontend
--  Marcos Paz Goncheff - Backend  https://www.linkedin.com/in/marcos-paz-goncheff/
--  Marvin Archila - Backend
--  Dante Fontana - Tester
+-  David Moreno Castilla - Frontend [LinkedIn](https://www.linkedin.com/in/davidjmc/)
+-  Marcos Paz Goncheff - Backend [LinkedIn](https://www.linkedin.com/in/marcos-paz-goncheff/)
+-  Marvin Archila - Backend [LinkedIn](https://www.linkedin.com/in/marvin-david-archila/)
+-  Dante Fontana - Tester [LinkedIn](https://www.linkedin.com/in/maurifl/) - [Portfolio](https://my-portfolio-d7f82.firebaseapp.com/)
 -  Ricardo Thalhuen Moraga Cortez - Tester
 
 ## Links
