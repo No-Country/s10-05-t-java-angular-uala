@@ -4,9 +4,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 const URL_API='http://localhost:8080/v1/api/service/payment/'
+let balance : number =0;
 @Injectable({
   providedIn: 'root'
 })
+
 
 export class PagosServiceService {
  
@@ -34,5 +36,7 @@ export class PagosServiceService {
   findbalance(){
     return this.http.get<number>(`${URL_API}calculate/balance`)
   }
+
+  
 
 }

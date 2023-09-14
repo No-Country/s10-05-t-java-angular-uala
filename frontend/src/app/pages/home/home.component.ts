@@ -4,6 +4,7 @@ import { MovementsComponent } from './components/movements/movements.component';
 import { ExpensesComponent } from './components/expenses/expenses.component';
 import { AuthService } from '../../services/auth.service';
 import { PagosServiceService } from 'src/app/services/pagos-service.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +14,14 @@ import { PagosServiceService } from 'src/app/services/pagos-service.service';
   imports: [
     BankingComponent,
     MovementsComponent,
-    ExpensesComponent
+    ExpensesComponent,
+    FormsModule
   ],
   host: {'class': 'flex flex-grow'}
 })
 export class HomeComponent implements OnInit {
   public name!:string;
-  public balance !:number;
+  public balance :number=0;
   public user:any;
   public balanceServicios?:number;
   public authService=inject(AuthService);
@@ -29,19 +31,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.serviciosPago.findbalance().subscribe(data=>{
-      this.balanceServicios=data;
-    })
+    this.serviciosPago.findbalance().subscribe((data:any)=>this.balance=data)
+    console.log(this.balance);
     
     this.authService.getInfoUser().subscribe((userInfo:any)=>{
       this.name = userInfo.name;
       this.balance = userInfo.balance;
       console.log(userInfo.cbu);
-      this.serviciosPago.findbalance().subscribe(data=>{
-        this.balanceServicios=data
-        console.log(this.balanceServicios);
-        
-      })
       this.user = {
         name:this.name,
         lastname: 'Burgos',
@@ -50,7 +46,7 @@ export class HomeComponent implements OnInit {
         expenses: [
           {
             name: 'Servicios y débitos automáticos',
-            value: this.balanceServicios
+            value: 700
           },
           {
             name: 'Compras',
