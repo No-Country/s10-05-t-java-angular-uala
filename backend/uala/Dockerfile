@@ -1,4 +1,4 @@
-FROM openjdk:17.0.1-jdk
+FROM openjdk:17.0.6-jdk
 MAINTAINER MARCOS ELIAS PAZ GONCHEFF
 COPY target/uala-0.0.1-SNAPSHOT.jar uala.jar
 ENTRYPOINT ["java", "-jar", "uala.jar"]
