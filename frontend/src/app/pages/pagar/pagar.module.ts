@@ -13,6 +13,7 @@ import { ClaveComponent } from './servicio/clave/clave.component';
 import { ConfirmacionComponent } from './servicio/confirmacion/confirmacion.component';
 import { PagoComponent } from './servicio/pago/pago.component';
 import { PagarComponent } from './pagar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import { PagarComponent } from './pagar.component';
     CommonModule,
     PagarRoutingModule,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule 
   ]
 })
 export class PagarModule { }

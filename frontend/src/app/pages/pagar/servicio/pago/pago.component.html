@@ -1,13 +1,15 @@
 <br>
 <br>
+    
     <h2 class=" font-semibold gap-1 text-[#3A3A3A] text-center text-base">Vas a pagar</h2>
-    <h1 class="font-bold text-[#3A3A3A] text-center text-xl mb-1">$80.000</h1>
-    <h2 class="font-semibold text-[#3A3A3A] text-center text-base">a "Gas Natural"</h2>
-    <h3 class="font-semibold text-[#818181] text-center text-base">No. de Factura: "827449275847211" </h3>
+    <h1 class="font-bold text-[#3A3A3A] text-center text-xl mb-1" >${{servicioInter.balance}}</h1>
+    <h2 class="font-semibold text-[#3A3A3A] text-center text-base" >{{servicioInter.serviceType}}</h2>
+    <h3 class="font-semibold text-[#818181] text-center text-base" >No. de Factura: {{servicioInter.invoiceSeries}} </h3>
+    <h3 class="font-semibold text-[#818181] text-center text-base" >Fecha Expiracion: {{servicioInter.expirationDate}} </h3>
+    <h3 class="font-semibold text-[#818181] text-center text-base" >Descripcion: {{servicioInter.descriptionService}} </h3>
 
-<button
-routerLink="/main/pagar/confirmacion"
-class="bg-[#3564FD] mt-5 text-white justify-center it lg:w-64 font-medium py-2 px-4 border border-[#3564FD] rounded-full duration-200 float-right"
->
-Confirmar
-</button>
+
+<div>
+    <input type="button"  (click)="confirmar()" value="Continuar" 
+    class="bg-[#3564FD] mt-5 text-white justify-center it lg:w-64 font-medium py-2 px-4 border border-[#3564FD] rounded-full duration-200 float-right">
+  </div>

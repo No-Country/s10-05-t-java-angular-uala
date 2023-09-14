@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   imports: [
     BankingComponent,
     MovementsComponent,
-    ExpensesComponent
+    ExpensesComponent,
   ],
   host: {'class': 'flex flex-grow'}
 })
