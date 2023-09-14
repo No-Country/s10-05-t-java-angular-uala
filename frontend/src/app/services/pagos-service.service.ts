@@ -3,7 +3,7 @@ import { ServicioInter } from '../interface/servicioInter';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const URL_API='http://localhost:8080/v1/api/service/payment/'
+const URL_API='https://uala-no-country.onrender.com/v1/api/service/payment/'
 let balance : number =0;
 @Injectable({
   providedIn: 'root'

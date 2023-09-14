@@ -7,6 +7,7 @@
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/security/service/RolService.java
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/service/PaymentsService/impl/TransferImpl.java
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/security/service/UsuarioService.java
+/home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/models/dto/ServicePayment/ResponseServiceAndRechargeDTO.java
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/repository/PaymentsRepository/CobroExpessRepository.java
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/security/entity/Rol.java
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/models/entity/payamentsMethod/PagoFacil.java
@@ -29,6 +30,7 @@
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/security/repository/UsuarioRepository.java
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/service/PaymentsService/impl/PagoFacilServiceIpl.java
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/models/entity/payamentsMethod/Transfer.java
+/home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/models/dto/ServicePayment/RechargeMovilServiceDTO.java
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/service/PaymentsService/impl/WalletServiceIpl.java
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/repository/ServicePaymentRepository/IServicePayment.java
 /home/david/Documents/No_country/s10-05-t-java-angular-uala/backend/uala/src/main/java/com/noCountry/uala/UalaApplication.java
