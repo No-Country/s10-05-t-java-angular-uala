@@ -7,3 +7,7 @@
     position: relative;
     right: 100px;
 }
+
+input[type="radio"]:checked + span {
+    display: block;
+}
