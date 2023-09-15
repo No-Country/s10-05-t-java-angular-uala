@@ -17,7 +17,7 @@
 | Elizabeth León      | UX/UI    | [LinkedIn](https://www.linkedin.com/in/elizabethleonperez/) - [Behance](https://www.behance.net/elizabethleonperez) |
 | Federico Burgos     | Frontend | [GitHub](https://github.com/fedev95) - [LinkedIn](https://www.linkedin.com/in/federicoburgos/) |
 | Pedro Saavedra      | Frontend |  |
-| David Moreno Castilla | Frontend | [LinkedIn](https://www.linkedin.com/in/davidjmc/) |
+| David Moreno Castilla | Frontend |[GitHub](https://github.com/davidjmcxl) - [LinkedIn](https://www.linkedin.com/in/davidjmc/) |
 | Marcos Paz Goncheff | Backend  | [LinkedIn](https://www.linkedin.com/in/marcos-paz-goncheff/) |
 | Marvin Archila      | Backend  | [LinkedIn](https://www.linkedin.com/in/marvin-david-archila/) |
 | Dante Fontana       | Tester   | [LinkedIn](https://www.linkedin.com/in/maurifl/) - [Portfolio](https://my-portfolio-d7f82.firebaseapp.com/) |
